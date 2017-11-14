@@ -53,6 +53,7 @@ var nbLoose = 0; // Setting number of looses to zero
 var totalProfit = 0; // Total profit made
 
 var counter = 8;
+var step = 1;
 
 // Restarts the sequence every 2000ms
 setInterval(function() {
@@ -73,6 +74,12 @@ setInterval(function() {
 			counter--;
 			if (0 == counter) {
 				counter = 4;
+				step++;
+				if (12 == step) {
+					setBet(initialBet); // Reseting bet
+					counter = 8;
+					step = 1;
+				}
 				multiplyBet(2); // Multiplying bet twice
 			}
 			console.log('Profit: ' + profit + '. nbLoose = ' + nbLoose + '\n');
@@ -83,6 +90,7 @@ setInterval(function() {
 			console.log('Profit: ' + profit + '. Bet returned to ' + bet + '\n');
 			setBet(initialBet); // Reseting bet
 			counter = 8;
+			step = 1;
 		}
 
 		totalProfit += parseFloat(profit); // Increases current profit to total profit
