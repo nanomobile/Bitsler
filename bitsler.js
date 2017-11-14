@@ -80,6 +80,7 @@ setInterval(function() {
 					counter = 8;
 					step = 1;
 					console.log('Game Over');
+					console.log('Profit: ' + profit + '. nbLoose = ' + nbLoose + '\n');
 					return;
 				}
 				multiplyBet(2); // Multiplying bet twice
