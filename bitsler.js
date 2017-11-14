@@ -1,4 +1,4 @@
-var initialBet = 0.00000001; // Initial bet value. Change it to what fits the best  
+var initialBet = 0.00000010; // Initial bet value. Change it to what fits the best  
 
 function multiplyBet(coeff){
 	$("#amount").val(parseFloat($("#amount").val())*coeff);
