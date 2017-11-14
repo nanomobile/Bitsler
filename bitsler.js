@@ -62,7 +62,7 @@ setInterval(function() {
 	// Waiting 500ms after rolling the dice in case of lag
 	setTimeout(function(){
 		roll();
-	},500);
+	},100);
 
 	// Waiting for the page to be fully loaded
 	$(document).ready(function(){
@@ -99,6 +99,6 @@ setInterval(function() {
 		totalProfit += parseFloat(profit); // Increases current profit to total profit
 		console.log('Total profit: ' +  totalProfit + '\n');
 	});
-}, 2000);
+}, 400);
 
 
