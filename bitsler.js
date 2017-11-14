@@ -56,10 +56,10 @@ setInterval(function() {
 		// if loose
 		if(profit.includes('-')){
 			nbLoose++; // Increment looses
-			if (nbLose <= 1) {
-				multiplyBet(10);
-			} else {
-				setBet(initialBet);
+			multiplyBet(10);
+			if (getBet() >= 0.00001000) {
+				stop();
+				return;
 			}
 		}
 		// if win
