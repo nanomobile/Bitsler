@@ -79,6 +79,8 @@ setInterval(function() {
 					setBet(initialBet); // Reseting bet
 					counter = 8;
 					step = 1;
+					console.log('Game Over');
+					return;
 				}
 				multiplyBet(2); // Multiplying bet twice
 			}
