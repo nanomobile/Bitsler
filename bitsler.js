@@ -28,6 +28,10 @@ function multiplyBet(coeff){
 	$("#amount").val(parseFloat($("#amount").val())*coeff);
 }
 
+function setBet(value){
+	$("#amount").val(value);
+}
+
 /** Return to bet amount
 @param Float bet - the bet amount
 */
@@ -42,37 +46,16 @@ function roll(){
 	$("#btn-bet-dice").click();
 }
 
-/** 
-Instanciates bet
-@param Float value - the base value
-*/
-function initScript(value){
-	$("#amount").val(value);
-}
-
-initScript(initialBet);
+setBet(initialBet);
 
 var bet = parseFloat($("#amount").val()); // Stocking current bet value
 var nbLoose = 0; // Setting number of looses to zero
 var totalProfit = 0; // Total profit made
 
+var counter = 8;
+
 // Restarts the sequence every 2000ms
 setInterval(function() {
-	// Switching number of looses and reduces the bet amount in %, to prevent huge loss
-	switch(nbLoose) {
-	    case 5:
-			multiplyBet(0.3); // Next bet will be 30% of last bet
-		break;
-	    case 6:
-			multiplyBet(0.1); // Next bet will be 10% of last bet
-		break;
-	    case 7:
-		console.log('Maximum looses reached. Returning to base bet\n');
-			returnToBaseBet(bet); // Reseting bet
-			nbLoose = 0; // Reseting looses
-		break;
-	}
-
 	console.log('Rolling...\n');
 
 	// Waiting 500ms after rolling the dice in case of lag
@@ -82,20 +65,24 @@ setInterval(function() {
 
 	// Waiting for the page to be fully loaded
 	$(document).ready(function(){
-
 		var profit = $('#history-my-bets-dice tr').first().find('td:last').text(); // Getting current profit
 
 		// if loose
 		if(profit.includes('-')){
 			nbLoose++; // Increment looses
-			multiplyBet(2); // Multiplying bet twice
+			counter--;
+			if (0 == counter) {
+				counter = 4;
+				multiplyBet(2); // Multiplying bet twice
+			}
 			console.log('Profit: ' + profit + '. nbLoose = ' + nbLoose + '\n');
 		}
 		// if win
 		else{
 			nbLoose = 0; // Reseting looses
 			console.log('Profit: ' + profit + '. Bet returned to ' + bet + '\n');
-			returnToBaseBet(bet); // Reseting bet
+			setBet(initialBet); // Reseting bet
+			counter = 8;
 		}
 
 		totalProfit += parseFloat(profit); // Increases current profit to total profit
