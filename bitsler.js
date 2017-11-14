@@ -75,8 +75,13 @@ setInterval(function() {
 		else{
 			nbLoose = 0; // Reseting looses
 			//console.log('Profit: ' + profit + '. Bet returned to ' + bet + '\n');
-			setBet(initialBet); // Reseting bet
-			counter = 2;
+			//setBet(initialBet); // Reseting bet
+			//counter = 2;
+			counter--;
+			if (0 == counter) {
+				counter = 2;
+				multiplyBet(2); // Multiplying bet twice
+			}
 			step = 1;
 		}
 
