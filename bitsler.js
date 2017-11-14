@@ -75,13 +75,13 @@ setInterval(function() {
 			if (0 == counter) {
 				counter = 4;
 				step++;
-				if (11 == step) {
+				if (9 == step) {
 					setBet(initialBet); // Reseting bet
 					counter = 8;
 					step = 1;
 					console.log('Game Over');
 					console.log('Profit: ' + profit + '. nbLoose = ' + nbLoose + '\n');
-					return;
+					window.stop();
 				}
 				multiplyBet(2); // Multiplying bet twice
 			}
