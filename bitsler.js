@@ -32,17 +32,12 @@ function setBet(value){
 	$("#amount").val(value);
 }
 
-/** Return to bet amount
-@param Float bet - the bet amount
-*/
-function returnToBaseBet(bet){
-	$("#amount").val(bet);
-}
-
 /** 
 Rolls the dice
 */
 function roll(){
+	if (initialBet == 0) return;
+	
 	$("#btn-bet-dice").click();
 }
 
@@ -57,6 +52,8 @@ var step = 1;
 
 // Restarts the sequence every 2000ms
 setInterval(function() {
+	if (initialBet == 0) return;
+	
 	console.log('Rolling...\n');
 
 	// Waiting 500ms after rolling the dice in case of lag
@@ -66,6 +63,8 @@ setInterval(function() {
 
 	// Waiting for the page to be fully loaded
 	$(document).ready(function(){
+		if (initialBet == 0) return;
+		
 		var profit = $('#history-my-bets-dice tr').first().find('td:last').text(); // Getting current profit
 
 		// if loose
@@ -75,13 +74,14 @@ setInterval(function() {
 			if (0 == counter) {
 				counter = 4;
 				step++;
-				if (14 == step) {
+				if (3 == step) {
 					setBet(initialBet); // Reseting bet
 					counter = 8;
 					step = 1;
 					console.log('Game Over');
 					console.log('Profit: ' + profit + '. nbLoose = ' + nbLoose + '\n');
-					window.stop();
+					initialBet = 0;
+					return;
 				}
 				multiplyBet(2); // Multiplying bet twice
 			}
