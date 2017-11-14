@@ -23,6 +23,9 @@ function stop() {
 
 setBet(initialBet);
 
+var balance = parseFloat($('#balances-lg').first().text());
+console.log(balance);
+
 var bet = parseFloat($("#amount").val()); // Stocking current bet value
 var nbLoose = 0; // Setting number of looses to zero
 var totalProfit = 0; // Total profit made
@@ -54,7 +57,7 @@ setInterval(function() {
 			if (0 == counter) {
 				counter = 2;
 				step++;
-				if (3 == step) {
+				if (5 == step) {
 					setBet(initialBet); // Reseting bet
 					counter = 2;
 					step = 1;
@@ -81,7 +84,7 @@ setInterval(function() {
 			if (0 == counter) {
 				counter = 2;
 				step++;
-				if (3 == step) {
+				if (5 == step) {
 					setBet(initialBet); // Reseting bet
 					counter = 2;
 					step = 1;
