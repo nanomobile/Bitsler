@@ -4,6 +4,10 @@ function multiplyBet(coeff){
 	$("#amount").val(parseFloat($("#amount").val())*coeff);
 }
 
+function getBet() {
+	return parseFloat($("#amount").val());	
+}
+
 function setBet(value){
 	$("#amount").val(value);
 }
@@ -23,15 +27,14 @@ function stop() {
 
 setBet(initialBet);
 
+console.log(getBet());
+
 var balance = parseFloat($('#balances-lg').first().text());
 console.log(balance);
 
 var bet = parseFloat($("#amount").val()); // Stocking current bet value
 var nbLoose = 0; // Setting number of looses to zero
 var totalProfit = 0; // Total profit made
-
-var counter = 2;
-var step = 1;
 
 // Restarts the sequence every 2000ms
 setInterval(function() {
@@ -53,52 +56,16 @@ setInterval(function() {
 		// if loose
 		if(profit.includes('-')){
 			nbLoose++; // Increment looses
-			counter--;
-			if (0 == counter) {
-				counter = 2;
-				step++;
-				if (5 == step) {
-					setBet(initialBet); // Reseting bet
-					counter = 2;
-					step = 1;
-					//console.log('Game Over');
-					//console.log('Profit: ' + profit + '. nbLoose = ' + nbLoose + '\n');
-					//initialBet = 0;
-					
-					//totalProfit += parseFloat(profit); // Increases current profit to total profit
-					//console.log('Total profit: ' +  totalProfit + '\n');
-					
-					return;
-				}
-				multiplyBet(2); // Multiplying bet twice
+			if (nbLose <= 1) {
+				setBet(initialBet * 10); // Reseting bet
+			} else {
+				setBet(initialBet);
 			}
-			//console.log('Profit: ' + profit + '. nbLoose = ' + nbLoose + '\n');
 		}
 		// if win
 		else{
 			nbLoose = 0; // Reseting looses
-			//console.log('Profit: ' + profit + '. Bet returned to ' + bet + '\n');
-			//setBet(initialBet); // Reseting bet
-			//counter = 2;
-			counter--;
-			if (0 == counter) {
-				counter = 2;
-				step++;
-				if (5 == step) {
-					setBet(initialBet); // Reseting bet
-					counter = 2;
-					step = 1;
-					//console.log('Game Over');
-					//console.log('Profit: ' + profit + '. nbLoose = ' + nbLoose + '\n');
-					//initialBet = 0;
-					
-					//totalProfit += parseFloat(profit); // Increases current profit to total profit
-					//console.log('Total profit: ' +  totalProfit + '\n');
-					
-					return;
-				}
-				multiplyBet(2); // Multiplying bet twice
-			}
+			setBet(initialBet);
 		}
 
 		totalProfit += parseFloat(profit); // Increases current profit to total profit
