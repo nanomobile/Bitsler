@@ -27,7 +27,7 @@ var bet = parseFloat($("#amount").val()); // Stocking current bet value
 var nbLoose = 0; // Setting number of looses to zero
 var totalProfit = 0; // Total profit made
 
-var counter = 8;
+var counter = 2;
 var step = 1;
 
 // Restarts the sequence every 2000ms
@@ -52,11 +52,11 @@ setInterval(function() {
 			nbLoose++; // Increment looses
 			counter--;
 			if (0 == counter) {
-				counter = 4;
+				counter = 2;
 				step++;
 				if (4 == step) {
 					setBet(initialBet); // Reseting bet
-					counter = 8;
+					counter = 2;
 					step = 1;
 					//console.log('Game Over');
 					//console.log('Profit: ' + profit + '. nbLoose = ' + nbLoose + '\n');
@@ -76,7 +76,7 @@ setInterval(function() {
 			nbLoose = 0; // Reseting looses
 			//console.log('Profit: ' + profit + '. Bet returned to ' + bet + '\n');
 			setBet(initialBet); // Reseting bet
-			counter = 8;
+			counter = 2;
 			step = 1;
 		}
 
