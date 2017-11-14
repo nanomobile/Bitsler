@@ -57,7 +57,7 @@ setInterval(function() {
 		if(profit.includes('-')){
 			nbLoose++; // Increment looses
 			multiplyBet(10);
-			if (getBet() >= 0.00001000) {
+			if (getBet() > 0.00001000) {
 				stop();
 				return;
 			}
