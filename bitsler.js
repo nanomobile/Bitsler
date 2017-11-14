@@ -58,8 +58,7 @@ setInterval(function() {
 			nbLoose++; // Increment looses
 			multiplyBet(10);
 			if (getBet() > 0.00001000) {
-				stop();
-				return;
+				setBet(initialBet);
 			}
 		}
 		// if win
@@ -72,5 +71,3 @@ setInterval(function() {
 		//console.log('Total profit: ' +  totalProfit + '\n');
 	});
 }, 400);
-
-
