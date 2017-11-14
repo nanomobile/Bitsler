@@ -75,7 +75,7 @@ setInterval(function() {
 			if (0 == counter) {
 				counter = 4;
 				step++;
-				if (12 == step) {
+				if (11 == step) {
 					setBet(initialBet); // Reseting bet
 					counter = 8;
 					step = 1;
