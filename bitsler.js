@@ -17,6 +17,10 @@ function roll(){
 	$("#btn-bet-dice").click();
 }
 
+function stop() {
+	initialBet = 0;	
+}
+
 setBet(initialBet);
 
 var bet = parseFloat($("#amount").val()); // Stocking current bet value
@@ -50,16 +54,16 @@ setInterval(function() {
 			if (0 == counter) {
 				counter = 4;
 				step++;
-				if (3 == step) {
+				if (4 == step) {
 					setBet(initialBet); // Reseting bet
 					counter = 8;
 					step = 1;
 					//console.log('Game Over');
 					//console.log('Profit: ' + profit + '. nbLoose = ' + nbLoose + '\n');
-					initialBet = 0;
+					//initialBet = 0;
 					
-					totalProfit += parseFloat(profit); // Increases current profit to total profit
-					console.log('Total profit: ' +  totalProfit + '\n');
+					//totalProfit += parseFloat(profit); // Increases current profit to total profit
+					//console.log('Total profit: ' +  totalProfit + '\n');
 					
 					return;
 				}
