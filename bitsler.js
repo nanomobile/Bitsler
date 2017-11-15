@@ -100,7 +100,7 @@ setInterval(function() {
 			setBet(initialBet);
 		}
 		
-		if (Mathf.random() >= 0.5) {
+		if (Math.random() >= 0.5) {
 			changeCondition();
 		}
 
