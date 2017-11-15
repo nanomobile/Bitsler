@@ -1,4 +1,4 @@
-var initialBet = 0.00000001 * 14; // Initial bet value. Change it to what fits the best  
+var initialBet = 0.00000001 * 10; // Initial bet value. Change it to what fits the best  
 
 function multiplyBet(coeff){
 	$("#amount").val(parseFloat($("#amount").val())*coeff);
@@ -44,6 +44,10 @@ function getRoll() {
 	return parseFloat($('#history-my-bets-dice tr').first().find('td:last').prev().text());	
 }
 
+function getBalance() {
+	return parseFloat($('#balances-lg').first().text());	
+}
+
 /** 
 Rolls the dice
 */
@@ -58,13 +62,10 @@ function stop() {
 }
 
 setBet(initialBet);
+setPayout(10);
+changeCondition();
 
-console.log(getBet());
-
-var balance = parseFloat($('#balances-lg').first().text());
-console.log(balance);
-
-var bet = parseFloat($("#amount").val()); // Stocking current bet value
+var bet = getBet(); // Stocking current bet value
 var nbLoose = 0; // Setting number of looses to zero
 var totalProfit = 0; // Total profit made
 
@@ -88,7 +89,7 @@ setInterval(function() {
 		// if loose
 		if(profit < 0){
 			nbLoose++; // Increment looses
-			multiplyBet(1 + 33/100);
+			multiplyBet(10);
 			if (getBet() > 0.00000001 * 100) {
 				setBet(initialBet);
 			}
