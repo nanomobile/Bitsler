@@ -62,7 +62,7 @@ function stop() {
 }
 
 setBet(initialBet);
-setPayout(10);
+setPayout(2);
 changeCondition();
 
 var bet = getBet(); // Stocking current bet value
@@ -100,7 +100,9 @@ setInterval(function() {
 			setBet(initialBet);
 		}
 		
-		changeCondition();
+		if (Mathf.random() >= 0.5) {
+			changeCondition();
+		}
 
 		totalProfit += profit; // Increases current profit to total profit
 		//console.log('Total profit: ' +  totalProfit + '\n');
