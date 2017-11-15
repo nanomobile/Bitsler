@@ -12,6 +12,11 @@ function setBet(value){
 	$("#amount").val(value);
 }
 
+function SetChance(value) {
+	$("#editable-chance").text(value + "%");
+	$("#editable-chance-field").val(value);	
+}
+
 /** 
 Rolls the dice
 */
