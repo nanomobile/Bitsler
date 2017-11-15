@@ -1,4 +1,4 @@
-var initialBet = 0.00000001 * 1; // Initial bet value. Change it to what fits the best  
+var initialBet = 0.00000001 * 32; // Initial bet value. Change it to what fits the best  
 
 function multiplyBet(coeff){
 	$("#amount").val(parseFloat($("#amount").val())*coeff);
@@ -63,11 +63,12 @@ function stop() {
 
 setBet(initialBet);
 setPayout(2);
-changeCondition();
 
 var bet = getBet(); // Stocking current bet value
 var nbLoose = 0; // Setting number of looses to zero
 var totalProfit = 0; // Total profit made
+
+var betLimit = 1024;
 
 // Restarts the sequence every 2000ms
 setInterval(function() {
@@ -90,7 +91,7 @@ setInterval(function() {
 		if(profit < 0){
 			nbLoose++; // Increment looses
 			multiplyBet(2);
-			if (getBet() > 0.00000001 * 128) {
+			if (getBet() > 0.00000001 * betLimit) {
 				setBet(initialBet);
 			}
 		}
