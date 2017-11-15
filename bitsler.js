@@ -28,6 +28,18 @@ function setPayout(value) {
 	roll_by_payout(value);
 }
 
+function getChance() {
+	return parseFloat($("#editable-chance-field").val());
+}
+
+function getPayout() {
+	return parseFloat($("#editable-payout-field").val());
+}
+
+function getProfit() {
+	return $('#history-my-bets-dice tr').first().find('td:last').text();	
+}
+
 /** 
 Rolls the dice
 */
@@ -67,7 +79,7 @@ setInterval(function() {
 	$(document).ready(function(){
 		if (initialBet == 0) return;
 		
-		var profit = $('#history-my-bets-dice tr').first().find('td:last').text(); // Getting current profit
+		var profit = getProfit(); // Getting current profit
 
 		// if loose
 		if(profit.includes('-')){
