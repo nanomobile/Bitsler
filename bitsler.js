@@ -37,7 +37,11 @@ function getPayout() {
 }
 
 function getProfit() {
-	return $('#history-my-bets-dice tr').first().find('td:last').text();	
+	return parseFloat($('#history-my-bets-dice tr').first().find('td:last').text());	
+}
+
+function getRoll() {
+	return parseFloat($('#history-my-bets-dice tr').first().find('td:last').prev().text());	
 }
 
 /** 
@@ -82,7 +86,7 @@ setInterval(function() {
 		var profit = getProfit(); // Getting current profit
 
 		// if loose
-		if(profit.includes('-')){
+		if(profit < 0){
 			nbLoose++; // Increment looses
 			multiplyBet(1 + 33/100);
 			if (getBet() > 0.00000001 * 100) {
@@ -95,7 +99,7 @@ setInterval(function() {
 			setBet(initialBet);
 		}
 
-		totalProfit += parseFloat(profit); // Increases current profit to total profit
+		totalProfit += profit; // Increases current profit to total profit
 		//console.log('Total profit: ' +  totalProfit + '\n');
 	});
 }, 400);
