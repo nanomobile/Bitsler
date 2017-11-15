@@ -1,4 +1,4 @@
-var initialBet = 0.00000001 * 10; // Initial bet value. Change it to what fits the best  
+var initialBet = 0.00000001 * 14; // Initial bet value. Change it to what fits the best  
 
 function multiplyBet(coeff){
 	$("#amount").val(parseFloat($("#amount").val())*coeff);
@@ -56,7 +56,7 @@ setInterval(function() {
 		// if loose
 		if(profit.includes('-')){
 			nbLoose++; // Increment looses
-			multiplyBet(10);
+			multiplyBet(1 + 33/100);
 			if (getBet() > 0.00000001 * 100) {
 				setBet(initialBet);
 			}
