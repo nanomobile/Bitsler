@@ -12,14 +12,20 @@ function setBet(value){
 	$("#amount").val(value);
 }
 
+function changeCondition() {
+	roll_by_condition();	
+}
+
 function setChance(value) {
 	$("#editable-chance").text(value + "%");
-	$("#editable-chance-field").val(value);	
+	$("#editable-chance-field").val(value);
+	roll_by_chance(value);
 }
 
 function setPayout(value) {
 	$("#editable-payout").text(value + "x");
-	$("#editable-payout-field").val(value);	
+	$("#editable-payout-field").val(value);
+	roll_by_payout(value);
 }
 
 /** 
