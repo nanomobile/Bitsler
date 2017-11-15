@@ -56,18 +56,15 @@ setInterval(function() {
 		// if loose
 		if(profit.includes('-')){
 			nbLoose++; // Increment looses
-			setBet(getBet() + getBet() * 0.00015);
-			if (getBet() > 0.00000001 * 2000) {
-				stop();
-				return;
+			multiplyBet(2);
+			if (getBet() > 0.00000001 * 1024) {
+				setBet(initialBet);
 			}
 		}
 		// if win
-		else{
-			stop();
-			return;
-			//nbLoose = 0; // Reseting looses
-			//setBet(initialBet);
+		else {
+			nbLoose = 0; // Reseting looses
+			setBet(initialBet);
 		}
 
 		totalProfit += parseFloat(profit); // Increases current profit to total profit
