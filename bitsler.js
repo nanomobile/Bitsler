@@ -1,4 +1,4 @@
-var initialBet = 0.00000001 * 10; // Initial bet value. Change it to what fits the best  
+var initialBet = 0.00000001 * 1; // Initial bet value. Change it to what fits the best  
 
 function multiplyBet(coeff){
 	$("#amount").val(parseFloat($("#amount").val())*coeff);
@@ -89,8 +89,8 @@ setInterval(function() {
 		// if loose
 		if(profit < 0){
 			nbLoose++; // Increment looses
-			multiplyBet(10);
-			if (getBet() > 0.00000001 * 100) {
+			multiplyBet(2);
+			if (getBet() > 0.00000001 * 128) {
 				setBet(initialBet);
 			}
 		}
@@ -99,6 +99,8 @@ setInterval(function() {
 			nbLoose = 0; // Reseting looses
 			setBet(initialBet);
 		}
+		
+		changeCondition();
 
 		totalProfit += profit; // Increases current profit to total profit
 		//console.log('Total profit: ' +  totalProfit + '\n');
