@@ -12,9 +12,14 @@ function setBet(value){
 	$("#amount").val(value);
 }
 
-function SetChance(value) {
+function setChance(value) {
 	$("#editable-chance").text(value + "%");
 	$("#editable-chance-field").val(value);	
+}
+
+function setPayout(value) {
+	$("#editable-payout").text(value + "x");
+	$("#editable-payout-field").val(value);	
 }
 
 /** 
