@@ -107,7 +107,7 @@ setInterval(function() {
 		}
 		
 		if (Math.random() * 100 <= getRoll()) {
-			setChance(Math.random() * 96 + 2);
+			setPayout(Math.random() * 8 + 2);
 		}
 		
 		if (getRoll() <= getChance()) {
