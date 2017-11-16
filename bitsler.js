@@ -110,8 +110,8 @@ setInterval(function() {
 			//setChance(0.98 * Math.random() * 100 + 2);
 		//}
 		
-		if (Math.random() >= 0.5) {
-			changeDirection();
+		if (getRoll() >= getChance()) {
+			changeCondition();
 		}
 
 		totalProfit += profit; // Increases current profit to total profit
