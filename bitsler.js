@@ -94,15 +94,14 @@ setInterval(function() {
 			if (getBet() > 0.00000001 * betLimit) {
 				setBet(initialBet);
 			}
+			if (getRoll() >= getChance()) {
+				changeCondition();
+			}
 		}
 		// if win
 		else {
 			nbLoose = 0; // Reseting looses
 			setBet(initialBet);
-		}
-		
-		if (getRoll() >= getChance() && getRoll() >= Math.random() * 100) {
-			changeCondition();
 		}
 
 		totalProfit += profit; // Increases current profit to total profit
