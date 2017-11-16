@@ -107,10 +107,10 @@ setInterval(function() {
 		}
 		
 		if (Math.random() > 0.5) {
-			if (Math.random() > 0.5) {
-				setChance(getChance() * 0.75);
+			if (getRoll() <= 50) {
+				setChance(getChance() * 0.5);
 			} else {
-				setChance(getChance() * 1.25);
+				setChance(getChance() * 2);
 			}
 		}
 		
