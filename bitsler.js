@@ -68,7 +68,7 @@ var totalProfit = 0; // Total profit made
 
 var initialBet = 0.00000001 * 1; // Initial bet value. Change it to what fits the best  
 var betLimit = 64;
-var speed = 10;
+var speed = 100;
 
 // Restarts the sequence every 2000ms
 setInterval(function() {
