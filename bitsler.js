@@ -55,7 +55,13 @@ function getBalance() {
 Rolls the dice
 */
 function roll(){
+	if (getBalance() <= 0) return;
+	
 	if (initialBet == 0) return;
+	
+	if (getBet() >= getBalance() * 0.5) {
+		setBet(getBet() * 0.5);
+	}
 	
 	$("#btn-bet-dice").click();
 }
@@ -88,6 +94,8 @@ setInterval(function() {
 
 	// Waiting for the page to be fully loaded
 	$(document).ready(function(){
+		if (getBalance() <= 0) return;
+		
 		if (initialBet == 0) return;
 		
 		var profit = getProfit(); // Getting current profit
