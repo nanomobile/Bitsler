@@ -29,7 +29,7 @@ function setPayout(value) {
 
 function getChance() {
 	var chance = parseFloat($("#editable-chance-field").val());
-	console.log("Chance = " + chance);
+	//console.log("Chance = " + chance);
 	return chance;
 }
 
@@ -43,7 +43,7 @@ function getProfit() {
 
 function getRoll() {
 	var roll = parseFloat($('#history-my-bets-dice tr').first().find('td:last').prev().text());
-	console.log("Roll = " + roll);
+	//console.log("Roll = " + roll);
 	return roll;	
 }
 
