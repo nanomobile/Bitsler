@@ -62,7 +62,7 @@ function stop() {
 }
 
 setBet(initialBet);
-setPayout(2);
+setChance(98);
 
 var bet = getBet(); // Stocking current bet value
 var nbLoose = 0; // Setting number of looses to zero
