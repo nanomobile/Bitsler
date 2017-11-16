@@ -95,18 +95,23 @@ setInterval(function() {
 		// if loose
 		if(profit < 0){
 			nbLoose++; // Increment looses
-			multiplyBet(2);
-			if (getBet() > 0.00000001 * betLimit) {
-				setBet(initialBet);
-			}
-			if (getRoll() >= Math.random() * 100) {
-				changeCondition();
-			}
+			//multiplyBet(2);
+			//if (getBet() > 0.00000001 * betLimit) {
+				//setBet(initialBet);
+			//}
 		}
 		// if win
 		else {
 			nbLoose = 0; // Reseting looses
 			setBet(initialBet);
+		}
+		
+		if (Math.random() > getChance()) {
+			setChance(0.98 * Math.random() * 100 + 2);
+		}
+		
+		if (Math.random() > getChance()) {
+			changeDirection();
 		}
 
 		totalProfit += profit; // Increases current profit to total profit
