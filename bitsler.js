@@ -59,16 +59,16 @@ function stop() {
 	initialBet = 0;	
 }
 
-setBet(initialBet);
-setPayout(2);
-
 var bet = getBet(); // Stocking current bet value
 var nbLoose = 0; // Setting number of looses to zero
 var totalProfit = 0; // Total profit made
 
 var initialBet = 0.00000001 * 1; // Initial bet value. Change it to what fits the best  
 var betLimit = 64;
-var speed = 100;
+var speed = 10;
+
+setBet(initialBet);
+setPayout(2);
 
 // Restarts the sequence every 2000ms
 setInterval(function() {
