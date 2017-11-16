@@ -95,10 +95,10 @@ setInterval(function() {
 		// if loose
 		if(profit < 0){
 			nbLoose++; // Increment looses
-			//multiplyBet(2);
-			//if (getBet() > 0.00000001 * betLimit) {
-				//setBet(initialBet);
-			//}
+			multiplyBet(2);
+			if (getBet() > 0.00000001 * betLimit) {
+				setBet(initialBet);
+			}
 		}
 		// if win
 		else {
@@ -106,9 +106,13 @@ setInterval(function() {
 			setBet(initialBet);
 		}
 		
-		//if (Math.random() > 0.5) {
-			//setChance(0.98 * Math.random() * 100 + 2);
-		//}
+		if (Math.random() > 0.5) {
+			if (Math.random() > 0.5) {
+				setChance(getChance() * 0.75);
+			} else {
+				setChance(getChance() * 1.25);
+			}
+		}
 		
 		if (getRoll() <= getChance()) {
 			changeCondition();
