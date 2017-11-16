@@ -110,7 +110,7 @@ setInterval(function() {
 			//setChance(0.98 * Math.random() * 100 + 2);
 		//}
 		
-		if (getRoll() >= getChance()) {
+		if (getRoll() <= getChance()) {
 			changeCondition();
 		}
 
