@@ -106,11 +106,11 @@ setInterval(function() {
 			setBet(initialBet);
 		}
 		
-		if (Math.random() > 0.5) {
-			setChance(0.98 * Math.random() * 100 + 2);
-		}
+		//if (Math.random() > 0.5) {
+			//setChance(0.98 * Math.random() * 100 + 2);
+		//}
 		
-		if (Math.random() > 0.5) {
+		if (Math.random() >= 0.5) {
 			changeDirection();
 		}
 
