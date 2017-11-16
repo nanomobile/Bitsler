@@ -69,6 +69,7 @@ var nbLoose = 0; // Setting number of looses to zero
 var totalProfit = 0; // Total profit made
 
 var betLimit = 128;
+var speed = 50;
 
 // Restarts the sequence every 2000ms
 setInterval(function() {
@@ -79,7 +80,7 @@ setInterval(function() {
 	// Waiting 500ms after rolling the dice in case of lag
 	setTimeout(function(){
 		roll();
-	},100);
+	},speed);
 
 	// Waiting for the page to be fully loaded
 	$(document).ready(function(){
@@ -108,4 +109,4 @@ setInterval(function() {
 		totalProfit += profit; // Increases current profit to total profit
 		//console.log('Total profit: ' +  totalProfit + '\n');
 	});
-}, 400);
+}, speed * 4);
