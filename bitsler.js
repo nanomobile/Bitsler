@@ -99,7 +99,7 @@ setInterval(function() {
 			if (getBet() > 0.00000001 * betLimit) {
 				setBet(initialBet);
 			}
-			if (getRoll() >= Math.random()) {
+			if (getRoll() >= Math.random() * 100) {
 				changeCondition();
 			}
 		}
