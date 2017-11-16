@@ -106,12 +106,8 @@ setInterval(function() {
 			setBet(initialBet);
 		}
 		
-		if (Math.random() > 0.5) {
-			if (getRoll() <= 50) {
-				setChance(getChance() * 0.5);
-			} else {
-				setChance(getChance() * 2);
-			}
+		if (Math.random() * 100 <= getRoll()) {
+			setChance(Math.random() * 96 + 2);
 		}
 		
 		if (getRoll() <= getChance()) {
