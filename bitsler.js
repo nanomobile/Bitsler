@@ -1,4 +1,4 @@
-var initialBet = 0.00000001 * 1; // Initial bet value. Change it to what fits the best  
+var initialBet = 0.00000001 * 100; // Initial bet value. Change it to what fits the best  
 
 function multiplyBet(coeff){
 	$("#amount").val(parseFloat($("#amount").val())*coeff);
@@ -90,18 +90,18 @@ setInterval(function() {
 		// if loose
 		if(profit < 0){
 			nbLoose++; // Increment looses
-			multiplyBet(2);
-			if (getBet() > 0.00000001 * betLimit) {
-				setBet(initialBet);
-			}
+			//multiplyBet(2);
+			//if (getBet() > 0.00000001 * betLimit) {
+				//setBet(initialBet);
+			//}
 		}
 		// if win
 		else {
 			nbLoose = 0; // Reseting looses
-			setBet(initialBet);
+			//setBet(initialBet);
 		}
 		
-		if (Math.random() >= Math.random()) {
+		if (Math.random() >= getRoll() / 100) {
 			changeCondition();
 		}
 
