@@ -11,7 +11,8 @@ function setBet(value){
 }
 
 function changeCondition() {
-	roll_by_condition();	
+	roll_by_condition();
+	//console.log("Change Condition");
 }
 
 function setChance(value) {
@@ -27,7 +28,9 @@ function setPayout(value) {
 }
 
 function getChance() {
-	return parseFloat($("#editable-chance-field").val());
+	var chance = parseFloat($("#editable-chance-field").val());
+	console.log("Chance = " + chance);
+	return chance;
 }
 
 function getPayout() {
@@ -39,7 +42,9 @@ function getProfit() {
 }
 
 function getRoll() {
-	return parseFloat($('#history-my-bets-dice tr').first().find('td:last').prev().text());	
+	var roll = parseFloat($('#history-my-bets-dice tr').first().find('td:last').prev().text());
+	console.log("Roll = " + roll);
+	return roll;	
 }
 
 function getBalance() {
@@ -94,7 +99,7 @@ setInterval(function() {
 			if (getBet() > 0.00000001 * betLimit) {
 				setBet(initialBet);
 			}
-			if (getRoll() >= getChance()) {
+			if (getRoll() >= Math.random()) {
 				changeCondition();
 			}
 		}
