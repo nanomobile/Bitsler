@@ -75,7 +75,7 @@ var nbLoose = 0; // Setting number of looses to zero
 var totalProfit = 0; // Total profit made
 
 var initialBet = 0.00000001 * 1; // Initial bet value. Change it to what fits the best  
-var betLimit = 256;
+var betLimit = 2048;
 var speed = 10;
 
 setBet(initialBet);
@@ -125,9 +125,9 @@ setInterval(function() {
 			//setPayout(Math.random() * 2 + 1);
 		//}
 		
-		if (sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)] <= sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)]) {
-			changeCondition();
-		}
+		//if (sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)] <= sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)]) {
+			//changeCondition();
+		//}
 
 		totalProfit += profit; // Increases current profit to total profit
 		//console.log('Total profit: ' +  totalProfit + '\n');
