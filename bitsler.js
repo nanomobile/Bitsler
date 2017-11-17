@@ -1,5 +1,5 @@
 function multiplyBet(coeff){
-	$("#amount").val(parseFloat($("#amount").val()));
+	$("#amount").val(parseFloat($("#amount").val()) * coeff);
 }
 
 function getBet() {
