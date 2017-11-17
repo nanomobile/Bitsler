@@ -1,5 +1,5 @@
 function multiplyBet(coeff){
-	$("#amount").val(Math.ceil(parseFloat($("#amount").val()) * coeff * 100000000) / 100000000);
+	$("#amount").val(parseFloat($("#amount").val()));
 }
 
 function getBet() {
