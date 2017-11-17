@@ -103,7 +103,7 @@ setInterval(function() {
 		// if loose
 		if(profit < 0){
 			nbLoose++; // Increment looses
-			multiplyBet(2);
+			multiplyBet(1.5);
 			if (getBet() >= 0.00000001 * betLimit) {
 				setBet(initialBet);
 			}
