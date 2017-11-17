@@ -107,15 +107,15 @@ setInterval(function() {
 		// if win
 		else {
 			nbLoose = 0; // Reseting looses
-			setBet(initialBet);
+			//setBet(initialBet);
 		}
 		
-		if (sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)] >= getRoll()) {
-			multiplyBet(2);
-			if (getBet() > 0.00000001 * betLimit) {
-				setBet(initialBet);
-			}
-		}
+		//if (sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)] >= getRoll()) {
+			//multiplyBet(2);
+			//if (getBet() > 0.00000001 * betLimit) {
+				//setBet(initialBet);
+			//}
+		//}
 		
 		if (sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)] <= getRoll()) {
 			setPayout(Math.random() * 2 + 2);
