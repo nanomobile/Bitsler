@@ -59,10 +59,6 @@ function roll(){
 	
 	if (initialBet == 0) return;
 	
-	if (getBet() >= getBalance() * 0.5) {
-		setBet(getBet() * 0.5);
-	}
-	
 	$("#btn-bet-dice").click();
 }
 
@@ -75,8 +71,8 @@ var nbLoose = 0; // Setting number of looses to zero
 var totalProfit = 0; // Total profit made
 
 var initialBet = 0.00000001 * 1; // Initial bet value. Change it to what fits the best  
-var betLimit = 64;
-var speed = 10;
+var betLimit = 128;
+var speed = 50;
 var wasStart = 0;
 
 setBet(initialBet);
