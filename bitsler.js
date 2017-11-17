@@ -75,6 +75,10 @@ var betLimit = 128;
 var speed = 50;
 var wasStart = 0;
 
+var payout = 2;
+var balanceMin = 100;
+var balanceMax = 500;
+
 setBet(initialBet);
 setPayout(2);
 
@@ -120,7 +124,7 @@ setInterval(function() {
 		//}
 		
 		if (sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)] <= getRoll()) {
-			setPayout(Math.random() * 2 + 2);
+			setPayout(Math.random() * payout + 2);
 		}
 		
 		if (sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)] <= sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)]) {
@@ -129,7 +133,7 @@ setInterval(function() {
 		
 		totalProfit += profit; // Increases current profit to total profit
 		
-		if (getBalance() >= 0.00000001 * 500 || getBalance() <= 0.00000001 * 100) {
+		if (getBalance() >= 0.00000001 * balanceMax || getBalance() <= 0.00000001 * balanceMin) {
 			stop();	
 		}
 		
