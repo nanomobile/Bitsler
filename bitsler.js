@@ -75,7 +75,7 @@ var nbLoose = 0; // Setting number of looses to zero
 var totalProfit = 0; // Total profit made
 
 var initialBet = 0.00000001 * 1; // Initial bet value. Change it to what fits the best  
-var betLimit = 2048;
+var betLimit = 64;
 var speed = 10;
 var wasStart = 0;
 
@@ -133,7 +133,7 @@ setInterval(function() {
 		
 		totalProfit += profit; // Increases current profit to total profit
 		
-		if (getBalance() >= 0.00000001 * 500 || getBalance() <= 0.00000001 * 200) {
+		if (getBalance() >= 0.00000001 * 500 || getBalance() <= 0.00000001 * 100) {
 			stop();	
 		}
 		
