@@ -77,6 +77,7 @@ var totalProfit = 0; // Total profit made
 var initialBet = 0.00000001 * 1; // Initial bet value. Change it to what fits the best  
 var betLimit = 2048;
 var speed = 10;
+var wasStart = 0;
 
 setBet(initialBet);
 setPayout(2);
@@ -98,7 +99,8 @@ setInterval(function() {
 		
 		if (initialBet == 0) return;
 		
-		var profit = getProfit(); // Getting current profit
+		var profit = (wasStart == 1) ? getProfit() : 0; // Getting current profit
+		wasStart = 1;
 
 		// if loose
 		if(profit < 0){
@@ -128,7 +130,7 @@ setInterval(function() {
 		//if (sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)] <= sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)]) {
 			//changeCondition();
 		//}
-
+		
 		totalProfit += profit; // Increases current profit to total profit
 		
 		if (totalProfit >= betLimit * 10 || totalProfit <= betLimit) {
