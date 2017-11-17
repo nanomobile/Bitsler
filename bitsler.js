@@ -1,5 +1,5 @@
 function multiplyBet(coeff){
-	$("#amount").val(Math.ceil(parseFloat($("#amount").val())*coeff));
+	$("#amount").val(parseFloat($("#amount").val())*coeff);
 }
 
 function getBet() {
@@ -103,7 +103,7 @@ setInterval(function() {
 		// if loose
 		if(profit < 0){
 			nbLoose++; // Increment looses
-			multiplyBet(1.5);
+			multiplyBet(2);
 			if (getBet() >= 0.00000001 * betLimit) {
 				setBet(initialBet);
 			}
