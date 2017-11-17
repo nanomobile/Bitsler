@@ -101,15 +101,15 @@ setInterval(function() {
 		// if loose
 		if(profit < 0){
 			nbLoose++; // Increment looses
-			multiplyBet(2);
-			if (getBet() >= 0.00000001 * betLimit || getBet() >= getBalance()) {
-				setBet(initialBet);
-			}
+			//multiplyBet(2);
+			//if (getBet() >= 0.00000001 * betLimit || getBet() >= getBalance()) {
+				//setBet(initialBet);
+			//}
 		}
 		// if win
 		else {
 			nbLoose = 0; // Reseting looses
-			setBet(initialBet);
+			//setBet(initialBet);
 		}
 		
 		//if (sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)] >= getRoll()) {
@@ -119,13 +119,13 @@ setInterval(function() {
 			//}
 		//}
 		
-		//if (sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)] <= getRoll()) {
-			//setPayout(Math.random() * 2 + 1);
-		//}
+		if (sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)] <= getRoll()) {
+			setPayout(Math.random() * 2 + 2);
+		}
 		
-		//if (sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)] <= sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)]) {
-			//changeCondition();
-		//}
+		if (sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)] <= sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)]) {
+			changeCondition();
+		}
 		
 		totalProfit += profit; // Increases current profit to total profit
 		
