@@ -66,7 +66,6 @@ function stop() {
 	initialBet = 0;	
 }
 
-var bet = getBet(); // Stocking current bet value
 var nbLoose = 0; // Setting number of looses to zero
 var totalProfit = 0; // Total profit made
 
@@ -75,6 +74,7 @@ var betLimit = 128;
 var speed = 50;
 var wasStart = 0;
 
+var bet = 2;
 var payout = 2;
 var balanceMin = 100;
 var balanceMax = 500;
@@ -122,6 +122,10 @@ setInterval(function() {
 				//setBet(initialBet);
 			//}
 		//}
+		
+		if (sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)] <= getRoll()) {
+			setBet(Math.random() * bet + 1);
+		}
 		
 		if (sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)] <= getRoll()) {
 			setPayout(Math.random() * payout + 2);
