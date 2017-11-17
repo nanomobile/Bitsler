@@ -110,18 +110,18 @@ setInterval(function() {
 			setBet(initialBet);
 		}
 		
-		if (Math.random() * 100 >= getRoll()) {
+		if (sha512.create().update(getRoll()).digest()[Math.ceil(Math.random() * 63)] >= getRoll()) {
 			multiplyBet(2);
 			if (getBet() > 0.00000001 * betLimit) {
 				setBet(initialBet);
 			}
 		}
 		
-		if (Math.random() * 100 <= getRoll()) {
+		if (sha512.create().update(getRoll()).digest()[Math.ceil(Math.random() * 63)] <= getRoll()) {
 			setPayout(Math.random() * 2 + 2);
 		}
 		
-		if (getRoll() <= Math.random() * 100) {
+		if (getRoll() <= sha512.create().update(getRoll()).digest()[Math.ceil(Math.random() * 63)]) {
 			changeCondition();
 		}
 
