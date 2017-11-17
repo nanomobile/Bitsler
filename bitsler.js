@@ -124,7 +124,7 @@ setInterval(function() {
 		//}
 		
 		if (sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)] <= getRoll()) {
-			setBet(Math.random() * bet + 1);
+			setBet(0.00000001 * (Math.ceil(Math.random() * bet) + 1));
 		}
 		
 		if (sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)] <= getRoll()) {
