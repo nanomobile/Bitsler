@@ -1,5 +1,5 @@
 function multiplyBet(coeff){
-	$("#amount").val(parseFloat($("#amount").val())*coeff);
+	$("#amount").val(Math.ceil(parseFloat($("#amount").val())*coeff));
 }
 
 function getBet() {
@@ -75,11 +75,11 @@ var nbLoose = 0; // Setting number of looses to zero
 var totalProfit = 0; // Total profit made
 
 var initialBet = 0.00000001 * 1; // Initial bet value. Change it to what fits the best  
-var betLimit = 64;
+var betLimit = 128;
 var speed = 10;
 
 setBet(initialBet);
-setPayout(2);
+setPayout(3);
 
 // Restarts the sequence every 2000ms
 setInterval(function() {
@@ -103,11 +103,15 @@ setInterval(function() {
 		// if loose
 		if(profit < 0){
 			nbLoose++; // Increment looses
+			multiplyBet(1.5);
+			if (getBet() >= 0.00000001 * betLimit) {
+				setBet(initialBet);
+			}
 		}
 		// if win
 		else {
 			nbLoose = 0; // Reseting looses
-			//setBet(initialBet);
+			setBet(initialBet);
 		}
 		
 		//if (sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)] >= getRoll()) {
@@ -117,13 +121,13 @@ setInterval(function() {
 			//}
 		//}
 		
-		if (sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)] <= getRoll()) {
-			setPayout(Math.random() * 2 + 2);
-		}
+		//if (sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)] <= getRoll()) {
+			//setPayout(Math.random() * 2 + 2);
+		//}
 		
-		if (getRoll() <= sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)]) {
-			changeCondition();
-		}
+		//if (getRoll() <= sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)]) {
+			//changeCondition();
+		//}
 
 		totalProfit += profit; // Increases current profit to total profit
 		//console.log('Total profit: ' +  totalProfit + '\n');
