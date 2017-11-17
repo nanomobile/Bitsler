@@ -133,7 +133,7 @@ setInterval(function() {
 		
 		totalProfit += profit; // Increases current profit to total profit
 		
-		if (totalProfit >= betLimit * 10 || totalProfit <= betLimit) {
+		if (totalProfit >= betLimit * 10 || totalProfit <= -betLimit) {
 			stop();	
 		}
 		
