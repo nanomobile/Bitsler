@@ -104,7 +104,7 @@ setInterval(function() {
 		if(profit < 0){
 			nbLoose++; // Increment looses
 			multiplyBet(2);
-			if (getBet() >= 0.00000001 * betLimit) {
+			if (getBet() >= 0.00000001 * betLimit || getBet() >= getBalance()) {
 				setBet(initialBet);
 			}
 		}
@@ -130,6 +130,11 @@ setInterval(function() {
 		//}
 
 		totalProfit += profit; // Increases current profit to total profit
+		
+		if (totalProfit >= betLimit * 10 || totalProfit <= betLimit) {
+			stop();	
+		}
+		
 		//console.log('Total profit: ' +  totalProfit + '\n');
 	});
 }, speed * 4);
