@@ -446,8 +446,9 @@ ________________________________________________________________________________
 
 <?php
 
-ini_set('max_execution_time', 1000);
-//set_time_limit(0);
+ini_set('max_execution_time', 50000);
+ini_set('request_terminate_timeout', 50000);
+set_time_limit(50000);
 
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Cache-Control: post-check=0, pre-check=0", false);
@@ -459,15 +460,23 @@ $clientSeed = "8f7c06e9e48849f38b0a592b5ea5824a5424e331";
 $serverSeed = "f808d5cbc0771fa5f615e811375cbb5d7c234bde2fed050301d7690d266bcd9d699c7ffadef9cea12ce1e7305816ae42f6acad6ee46f3212e7f14d69204dc845";
 $clientSeed = "fba068da0f035a4dfe24ff7841ab52beea8619eb";
 
+$serverSeed = "6b39dbaf7e0c7c5a08f433549b819b821c016cae39e94ce782fa7f4e9fe88559ddc0e5e338977b7c1ace257aa8b74c52fcdaffafc41e63f69d1fece403385c81";
+$clientSeed = "7a76d2f62fa1a8e4467dfad1c77e0c475e9c446c";
+
+$serverSeed = "d682586a552bcef00eb9b4bb2619cd26134984b9174b551d4a502496cdec60036b21a1d41597eec0894916ce1da17722b6f8d2b6911e50f6d77e6459439bfb81";
+$clientSeed = "47ae45524c36315c0cffc5d2a941a6e780d40784";
+
 //echo "Hash of Server Seed = " . hash("sha512", $serverSeed) . "<br>_____________________________________________________________________________________________<br>";
 
 $low = 0;
 $high = 0;
 
-$maxLossesInRow = 0;
-$lossesInRow = 0;
+$maxLossesInRowLow = 0;
+$maxLossesInRowHigh = 0;
+$lossesInRowLow = 0;
+$lossesInRowHigh = 0;
 
-for ($i=0; $i<=10000000; $i++) {
+for ($i=0; $i<=5000000; $i++) {
   //echo $i . "<br>";
   $nonce = $i;
   $seed = $serverSeed.'-'.$clientSeed.'-'.$nonce;
@@ -497,18 +506,24 @@ for ($i=0; $i<=10000000; $i++) {
   
   if ($luckyNumber < 49.5) {
       $low++;   
-      $lossesInRow++;
-      if ($maxLossesInRow < $lossesInRow) {
-          $maxLossesInRow = $lossesInRow; 
+      $lossesInRowLow++;
+      if ($maxLossesInRowLow < $lossesInRowLow) {
+          $maxLossesInRowLow = $lossesInRowLow; 
       }
+      $lossesInRowHigh = 0;
   } else if ($luckyNumber > 50.49) {
       $high++;
-      $lossesInRow = 0;
+      $lossesInRowHigh++;
+      if ($maxLossesInRowHigh < $lossesInRowHigh) {
+          $maxLossesInRowHigh = $lossesInRowHigh; 
+      }
+      $lossesInRowLow = 0;
   } else {
-      $lossesInRow = 0;
+      $lossesInRowLow = $lossesInRowHigh = 0;
   }
 }
 
 echo "Low = " . $low . "<br>" . "High = " . $high . "<br>";
-echo "Max Losses In Row = " . $maxLossesInRow . "<br>";
+echo "Max Losses In Row Low = " . $maxLossesInRowLow . "<br>";
+echo "Max Losses In Row High = " . $maxLossesInRowHigh . "<br>";
 ________________________________________________________________________________________________________________________________________________________________________________________
