@@ -444,8 +444,19 @@ play = function() {
 }
 ________________________________________________________________________________________________________________________________________________________________________________________
 
-$serverSeed = "94a05fdba519938559bec882e7ac0dbc5608913bfe4caee22ca0a77904f6bb225792e3dda9c46217f91b01890ec0addc6bf4ed316de167f9675066b11ba3cdd1";
-$clientSeed = "bf491610aab96d6e3b9f3320a97d28942b481c93";
+<?php
+
+set_time_limit(0);
+
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+
+$serverSeed = "bfd4994b480aeedf08ec2f2a82a3791ea79b45b5affb81d5ef89dee98640269948346edf5f8a354665a4a1a765024e67d0237bea809b34100759ba761f598cb4";
+$clientSeed = "8f7c06e9e48849f38b0a592b5ea5824a5424e331";
+
+$serverSeed = "f808d5cbc0771fa5f615e811375cbb5d7c234bde2fed050301d7690d266bcd9d699c7ffadef9cea12ce1e7305816ae42f6acad6ee46f3212e7f14d69204dc845";
+$clientSeed = "fba068da0f035a4dfe24ff7841ab52beea8619eb";
 
 //echo "Hash of Server Seed = " . hash("sha512", $serverSeed) . "<br>_____________________________________________________________________________________________<br>";
 
@@ -455,7 +466,7 @@ $high = 0;
 $maxLossesInRow = 0;
 $lossesInRow = 0;
 
-for ($i=0; $i<=1000000; $i++) {
+for ($i=0; $i<=10000000; $i++) {
   //echo $i . "<br>";
   $nonce = $i;
   $seed = $serverSeed.'-'.$clientSeed.'-'.$nonce;
