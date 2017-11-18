@@ -466,6 +466,9 @@ $clientSeed = "7a76d2f62fa1a8e4467dfad1c77e0c475e9c446c";
 $serverSeed = "d682586a552bcef00eb9b4bb2619cd26134984b9174b551d4a502496cdec60036b21a1d41597eec0894916ce1da17722b6f8d2b6911e50f6d77e6459439bfb81";
 $clientSeed = "47ae45524c36315c0cffc5d2a941a6e780d40784";
 
+$serverSeed = "5a32b719063f162374dc8b51f79287e2ff32a24fb2a15c8a7dd42c64d8925d3e7b445464a41d0bb5dfa955e7ae38bcd0fc2eb977344e331773fa29f7c632f467";
+$clientSeed = "4c5706549174ea31e64bc420f1232981048c29cd";
+
 //echo "Hash of Server Seed = " . hash("sha512", $serverSeed) . "<br>_____________________________________________________________________________________________<br>";
 
 $low = 0;
@@ -475,6 +478,12 @@ $maxLossesInRowLow = 0;
 $maxLossesInRowHigh = 0;
 $lossesInRowLow = 0;
 $lossesInRowHigh = 0;
+
+$tenLow = 0;
+$tenHigh = 0;
+
+$hundredLow = 0;
+$hundredHigh = 0;
 
 for ($i=0; $i<=5000000; $i++) {
   //echo $i . "<br>";
@@ -503,6 +512,18 @@ for ($i=0; $i<=5000000; $i++) {
   //echo "Lucky = " . $luckyNumber . "<br>_____________________________________________________________________________________________<br>";
   
   //echo $luckyNumber . "<br>";  
+
+  if ($luckyNumber < 10) {
+    $tenLow++;
+    if ($luckyNumber < 1) {
+        $hundredLow++;
+    }
+  } else if ($luckyNumber > 89.99) {
+    $tenHigh++;
+    if ($luckyNumber > 98.99) {
+        $hundredHigh++;
+    }
+  }
   
   if ($luckyNumber < 49.5) {
       $low++;   
@@ -524,6 +545,8 @@ for ($i=0; $i<=5000000; $i++) {
 }
 
 echo "Low = " . $low . "<br>" . "High = " . $high . "<br>";
+echo "Ten Low = " . $tenLow . "<br>" . "Ten High = " . $tenHigh . "<br>";
+echo "Hundred Low = " . $hundredLow . "<br>" . "Hundred High = " . $hundredHigh . "<br>";
 echo "Max Losses In Row Low = " . $maxLossesInRowLow . "<br>";
 echo "Max Losses In Row High = " . $maxLossesInRowHigh . "<br>";
 ________________________________________________________________________________________________________________________________________________________________________________________
