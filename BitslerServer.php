@@ -446,8 +446,8 @@ ________________________________________________________________________________
 
 <?php
 
-ini_set('max_execution_time', 0);
-set_time_limit(0);
+ini_set('max_execution_time', 1000);
+//set_time_limit(0);
 
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Cache-Control: post-check=0, pre-check=0", false);
