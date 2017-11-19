@@ -74,13 +74,13 @@ var betLimit = 128;
 var speed = 50;
 var wasStart = 0;
 
-var bet = 2;
+var bet = 32;
 var payout = 2;
 var balanceMin = 100;
 var balanceMax = 500;
 
 setBet(initialBet);
-setPayout(2);
+setPayout(4);
 
 // Restarts the sequence every 2000ms
 setInterval(function() {
@@ -105,15 +105,15 @@ setInterval(function() {
 		// if loose
 		if(profit < 0){
 			nbLoose++; // Increment looses
-			//multiplyBet(2);
-			//if (getBet() >= 0.00000001 * betLimit || getBet() >= getBalance()) {
-				//setBet(initialBet);
-			//}
+			multiplyBet(2);
+			if (getBet() >= 0.00000001 * betLimit || getBet() >= getBalance()) {
+				setBet(initialBet);
+			}
 		}
 		// if win
 		else {
 			nbLoose = 0; // Reseting looses
-			//setBet(initialBet);
+			setBet(initialBet);
 		}
 		
 		//if (sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)] >= getRoll()) {
@@ -123,17 +123,17 @@ setInterval(function() {
 			//}
 		//}
 		
-		if (sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)] <= getRoll()) {
-			setBet(0.00000001 * (Math.ceil(Math.random() * bet) + 1));
-		}
+		//if (sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)] <= getRoll()) {
+			//setBet(0.00000001 * (Math.ceil(Math.random() * bet) + 1));
+		//}
 		
-		if (sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)] <= getRoll()) {
-			setPayout(Math.random() * payout + 2);
-		}
+		//if (sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)] <= getRoll()) {
+			//setPayout(Math.random() * payout + 2);
+		//}
 		
-		if (sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)] <= sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)]) {
-			changeCondition();
-		}
+		//if (sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)] <= sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)]) {
+			//changeCondition();
+		//}
 		
 		totalProfit += profit; // Increases current profit to total profit
 		
