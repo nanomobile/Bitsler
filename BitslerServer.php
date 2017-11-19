@@ -78,7 +78,7 @@ for ($j = 0; $j < 1; $j++) {
         }
 
         if ($bet > $balance) {
-            echo "<h1># Ставки = " . $nonce . "</h1><br>";
+            echo "<h1># Ставки = " . ($nonce + 1) . "</h1><br>";
             break;
         }
 
