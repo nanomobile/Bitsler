@@ -103,7 +103,7 @@ setInterval(function() {
 		wasStart = 1;
 
 		// if loose
-		if(profit < 0){
+		if(profit <= 0){
 			nbLoose++; // Increment looses
 			//multiplyBet(2);
 			//if (getBet() >= 0.00000001 * betLimit || getBet() >= getBalance()) {
@@ -114,6 +114,7 @@ setInterval(function() {
 		else {
 			nbLoose = 0; // Reseting looses
 			//setBet(initialBet);
+			stop();
 		}
 		
 		//if (sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)] >= getRoll()) {
