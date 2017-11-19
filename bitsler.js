@@ -136,6 +136,8 @@ setInterval(function() {
 			//changeCondition();
 		//}
 		
+		changeCondition();
+		
 		totalProfit += profit; // Increases current profit to total profit
 		
 		//if (getBalance() >= 0.00000001 * balanceMax || getBalance() <= 0.00000001 * balanceMin) {
