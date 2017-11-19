@@ -142,6 +142,8 @@ setInterval(function() {
 			//stop();	
 		//}
 		
+		if (0 == getBalance()) stop();
+		
 		//console.log('Total profit: ' +  totalProfit + '\n');
 	});
 }, speed * 4);
