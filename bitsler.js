@@ -74,13 +74,13 @@ var betLimit = 128;
 var speed = 50;
 var wasStart = 0;
 
-var bet = 32;
-var payout = 2;
-var balanceMin = 100;
-var balanceMax = 500;
+//var bet = 32;
+//var payout = 2;
+//var balanceMin = 100;
+//var balanceMax = 500;
 
 setBet(initialBet);
-setPayout(4);
+setPayout(9900);
 
 // Restarts the sequence every 2000ms
 setInterval(function() {
@@ -105,15 +105,15 @@ setInterval(function() {
 		// if loose
 		if(profit < 0){
 			nbLoose++; // Increment looses
-			multiplyBet(2);
-			if (getBet() >= 0.00000001 * betLimit || getBet() >= getBalance()) {
-				setBet(initialBet);
-			}
+			//multiplyBet(2);
+			//if (getBet() >= 0.00000001 * betLimit || getBet() >= getBalance()) {
+				//setBet(initialBet);
+			//}
 		}
 		// if win
 		else {
 			nbLoose = 0; // Reseting looses
-			setBet(initialBet);
+			//setBet(initialBet);
 		}
 		
 		//if (sha512.create().update("" + getRoll()).digest()[Math.ceil(Math.random() * 63)] >= getRoll()) {
@@ -137,9 +137,9 @@ setInterval(function() {
 		
 		totalProfit += profit; // Increases current profit to total profit
 		
-		if (getBalance() >= 0.00000001 * balanceMax || getBalance() <= 0.00000001 * balanceMin) {
-			stop();	
-		}
+		//if (getBalance() >= 0.00000001 * balanceMax || getBalance() <= 0.00000001 * balanceMin) {
+			//stop();	
+		//}
 		
 		//console.log('Total profit: ' +  totalProfit + '\n');
 	});
