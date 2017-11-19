@@ -27,7 +27,9 @@ $startTime = time();
 
 // $frequenciesLow = $frequenciesHigh = array();
 
-$balance = 500000;
+$serverSeed = hash("sha512", $serverSeed . rand());
+
+$balance = $initialBalance = 1000000;
 $bet = $initialBet = 1;
 $maxBet = 0;
 $maxBalance = 0;
@@ -35,8 +37,6 @@ $minBalance = $balance + 1;
 
 $win = $lose = 0;
 $wagered = 0;
-
-$serverSeed = hash("sha512", $serverSeed . rand());
 
 for ($j = 0; $j < 1; $j++) {
     for ($nonce = 0; $nonce < 1000000; $nonce++) {
@@ -59,7 +59,7 @@ for ($j = 0; $j < 1; $j++) {
         if ($luckyNumber >= 33) {
             $lose++;
             $balance -= $bet;
-            $bet *= 1.5;
+            $bet *= 2;
             // if ($bet > 10000) {
             //     $bet = $initialBet;
             // }
@@ -77,9 +77,32 @@ for ($j = 0; $j < 1; $j++) {
             $minBalance = $balance;
         }
 
-        if ($bet > $balance) {
-            echo "<h1># Ставки = " . ($nonce + 1) . "</h1><br>";
+        if ($balance <= 0) {
             break;
+        }
+
+        if ($bet > $balance || $balance >= $initialBalance + 5000 || $balance <= $initialBalance - 500000) {
+            echo "<h1># Ставки = " . ($win + $lose) . "/" . ($nonce + 1) . "</h1><br>";
+            
+            setlocale(LC_MONETARY, 'en_US');
+            
+            echo "<h1>Wins = <font color=green>" . $win . "</font><br>Losses = <font color=red>" . $lose . "</font><br></h1>";
+            echo "<h1>Wagered = <font color=green>" . str_replace("USD", "", money_format('%i', $wagered)) . "</font><br></h1>";
+            echo "<h1>Balance = <font color=black>" . str_replace("USD", "", money_format('%i', $balance)) . "</font><br>Max Bet = <font color=black>" . str_replace("USD", "", money_format('%i', $maxBet)) . "</font><br></h1>";
+            echo "<h1>Max Balance = <font color=red>" . str_replace("USD", "", money_format('%i', $maxBalance)) . "</font><br>Min Balance = <font color=red>" . str_replace("USD", "", money_format('%i', $minBalance)) . "</font><br></h1>";
+
+            echo "<br>_____________________________________________________________________________________________________________________<br>";
+
+            $initialBalance = $balance;
+            $bet = $initialBet = 1;
+            // $maxBet = 0;
+            // $maxBalance = 0;
+            // $minBalance = $balance + 1;
+            
+            $win = $lose = 0;
+            $wagered = 0;
+
+            continue;
         }
 
         if ($bet > $maxBet) {
@@ -107,19 +130,16 @@ for ($j = 0; $j < 1; $j++) {
         // }
     }
 
-    if ($bet > $balance) {
+    if ($balance <= 0) {
         break;
     }
 
-    $serverSeed = hash("sha512", $serverSeed . rand());
+    // if ($bet > $balance) {
+    //     break;
+    // }
+
+    // $serverSeed = hash("sha512", $serverSeed . rand());
 }
-
-setlocale(LC_MONETARY, 'en_US');
-
-echo "<h1>Wins = <font color=green>" . $win . "</font><br>Losses = <font color=red>" . $lose . "</font><br></h1>";
-echo "<h1>Wagered = <font color=green>" . str_replace("USD", "", money_format('%i', $wagered)) . "</font><br></h1>";
-echo "<h1>Balance = <font color=black>" . str_replace("USD", "", money_format('%i', $balance)) . "</font><br>Max Bet = <font color=black>" . str_replace("USD", "", money_format('%i', $maxBet)) . "</font><br></h1>";
-echo "<h1>Max Balance = <font color=red>" . str_replace("USD", "", money_format('%i', $maxBalance)) . "</font><br>Min Balance = <font color=red>" . str_replace("USD", "", money_format('%i', $minBalance)) . "</font><br></h1>";
 
 // echo "<h1>< 9.90 = " . $maxCounterLow . "<br>";
 // echo "> 90.09 = " . $maxCounterHigh . "<br></h1>";
