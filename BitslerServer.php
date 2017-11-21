@@ -29,12 +29,12 @@ $serverSeed = hash("sha512", $serverSeed . rand());
 
 for ($j = 0; $j < 1; $j++) {
     $initialBalance = $balance = 1000000;
-    $bet = $initialBet = 500000;
+    $bet = $initialBet = 10000;
     $maxBet = 0;
     $maxBalance = 0;
     $minBalance = $balance + 1;
     $coeff = 1 + 1;
-    $profitCoeff = 2 - 1;
+    $payoutCoeff = 2 - 1;
     $chance = 49.50;
     
     $win = $lose = 0;
@@ -71,7 +71,7 @@ for ($j = 0; $j < 1; $j++) {
             $bet = round($bet);
         } else { // Win
             $win++;
-            $balance += $bet * $profitCoeff;
+            $balance += $bet * $payoutCoeff;
             $bet = $initialBet;
         } 
 
