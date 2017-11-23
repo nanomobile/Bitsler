@@ -29,16 +29,18 @@ $serverSeed = hash("sha512", $serverSeed . rand());
 
 for ($j = 0; $j < 1; $j++) {
     $initialBalance = $balance = 1000000;
-    $bet = $initialBet = 10000;
+    $bet = $initialBet = 1;
     $maxBet = 0;
     $maxBalance = 0;
     $minBalance = $balance + 1;
-    $coeff = 1 + 1;
-    $payoutCoeff = 2 - 1;
-    $chance = 49.50;
+    $coeff = 0 + 1;
+    $payoutCoeff = 1.1 - 1;
+    $chance = 90;
     
     $win = $lose = 0;
     $wagered = 0;
+
+    $arr = array();
 
     for ($nonce = 0; $nonce < 1000000; $nonce++) {
         $seed = $serverSeed.'-'.$clientSeed.'-'.$nonce;
@@ -52,6 +54,16 @@ for ($j = 0; $j < 1; $j++) {
         if ($luckyNumber < 0) {
             $luckyNumber = -$luckyNumber;
         }
+
+        // // LOSE
+        // if ($luckyNumber >= 90) {
+        //     $lose++;
+        // } else { // WIN
+        //     if ($lose > 0) {
+        //         $arr[$lose]++;
+        //     }
+        //     $lose = 0;
+        // }
 
         if ($bet > $balance) {
             break;
@@ -67,12 +79,18 @@ for ($j = 0; $j < 1; $j++) {
         if ($luckyNumber >= $chance) {
             $lose++;
             $balance -= $bet;
-            $bet *= $coeff;
-            $bet = round($bet);
+            // $bet *= $coeff;
+            // $bet = round($bet);
+            if ($bet == $initialBet && $lose >= 5) {
+                $bet = 500000;
+            } else {
+                $bet = $initialBet;
+            }
         } else { // Win
             $win++;
             $balance += $bet * $payoutCoeff;
             $bet = $initialBet;
+            $lose = 0;
         } 
 
         if ($balance > $maxBalance) {
@@ -83,22 +101,22 @@ for ($j = 0; $j < 1; $j++) {
             $minBalance = $balance;
         }
 
-        // if ($bet >= 1000) {
-        //     $bet = $initialBet;
-        // }
-
-        if ($balance <= 0 || 0 == $nonce && $lose > 0) {
+        if ($balance <= 0) {
             break;
         }
     }
 
+    // var_dump($arr);
+
+    // echo "<br><br>";
+
     $serverSeed = hash("sha512", $serverSeed . rand());
 
-    // if ($win + $lose == $nonce) continue;
+    //if ($win + $lose == $nonce) continue;
 
     echo "<h1># Ставки = " . ($win + $lose) . "/" . $nonce . "</h1><br>";
     
-    echo "<h1>Wins = <font color=green>" . $win . "</font><br>Losses = <font color=red>" . $lose . "</font><br></h1>";
+    // echo "<h1>Wins = <font color=green>" . $win . "</font><br>Losses = <font color=red>" . $lose . "</font><br></h1>";
     echo "<h1>Wagered = <font color=green>" . str_replace("USD", "", money_format('%i', $wagered)) . "</font><br></h1>";
     echo "<h1>Balance = <font color=black>" . str_replace("USD", "", money_format('%i', $balance)) . "</font><br>Max Bet = <font color=black>" . str_replace("USD", "", money_format('%i', $maxBet)) . "</font><br></h1>";
     echo "<h1>Max Balance = <font color=red>" . str_replace("USD", "", money_format('%i', $maxBalance)) . "</font><br>Min Balance = <font color=red>" . str_replace("USD", "", money_format('%i', $minBalance)) . "</font><br></h1>";
@@ -111,3 +129,25 @@ for ($j = 0; $j < 1; $j++) {
 }
 
 echo "<br>Time = " . (time() - $startTime) . "</h2><br>";
+
+// for ($j = 0; $j < 1; $j++) {
+//     $seed = $serverSeed.'-'.$clientSeed.'-' . $j;
+//     $seed = sha1($seed);
+//     $lucky = hexdec(substr($seed,0,8));
+//     $luckyNumber = ($lucky % 10000) / 100;
+
+//     GetPossibleHashesFromLuckyNumber($luckyNumber, $lucky);
+
+//     echo $seed . "<br>";
+// }
+
+// function GetPossibleHashesFromLuckyNumber($luckyNumber, $lucky) {
+//     // $arr = array();
+
+//     for ($i = 0; $i < 429496; $i++) {
+//         $num = intval($i * 10000 + $luckyNumber * 100);
+//         if ($lucky == $num) {
+//             echo  dechex($num) . "<br>";
+//         }
+//     }
+// }
