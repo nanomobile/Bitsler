@@ -1,0 +1,167 @@
+// ==UserScript==
+// @name         Dudemaus's DiceBot for Bitsler
+// @namespace    dicebotforbitslerbydudemaus
+// @version      2017.0417a
+// @description  Wont win a fortune, but it will win.
+// @author       Dudemaus
+// @match        *://www.bitsler.com/play/dice/*
+// @match        https://www.bitsler.com/play
+// @match        https://www.bitsler.com/play/dice*
+// @require http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
+// @grant		GM_xmlhttpRequest
+// @grant		GM_info
+// @grant		GM_setValue
+// @grant		GM_getValue
+// @grant		GM_addStyle
+
+// ==/UserScript==
+//////JQuery Compatibility statement//////
+this.$ = this.jQuery = jQuery.noConflict(true);
+//////JQuery Compatibility statement//////
+    
+    var countLosses = document.querySelectorAll('#history-my-bets-dice .text-danger').length;
+     var countWins = document.querySelectorAll('#history-my-bets-dice .text-success').length;
+     var winRatio = (countWins / 20) * 100;
+    var losscount = 0;
+
+
+
+
+    
+    
+    
+
+document.getElementById('game-row').insertAdjacentHTML('beforebegin',
+    '<br><div id="dicebot-container" class="tab-content tab-content-xs" style="border-style: solid;width: 800px;border-color: #D1D1D1;border-radius: 4px;border-style: solid;border-width: 1px; padding-bottom: 9px;padding-left: 9px;padding-right: 9px; margin-left: 118px; padding-top: 9px;display:block"> <div id="dicebotinnerwrap"> <div id="controlWrapper" style="Display:inline-block;"> <center><img src="http://i.imgur.com/fVx0BdR.png" /> <div id="tipDude" style="Display:inline-block;">Tip Dude</div> </center> <input type="text" name="betNumberOne" ID="betNumberOne" style="text-align:center;"> Bet #1 (base bet) <br> <input type="text" name="betNumberTwo" ID="betNumberTwo" style="text-align:center;"> Bet #2 <br> <input type="text" name="betNumberThree" ID="betNumberThree" style="text-align:center;"> Bet #3 <br> <input type="text" name="betNumberFour" ID="betNumberFour" style="text-align:center;"> Bet #4 <br> <button id="setBet" value="set bet">Bet Once</button> <button id="dudesAuto">Auto</button> <button id="stopDudesAuto">Stop Auto</button> </div> <div id="ulikey" style="Display:inline-block;"><font color="red"><b>If you like this bot please donate to any of these addresses:</b></font> <br><b><font size="1">Ethereum:</b> 0xfe460f08c4eaf98a234b2f1230f86971012a70a1<br><b>Bitcoin:</b> 1Ea5Fh5mrpdXbJVi2FrzNWvVW4WPJzBair <br><b>Doge:</b> DFdUDuzJ7PvJbw6BZCVDDqQjvTv5uoWTcU <br><b>Litecoin:</b> LKFtz7HDvuKa8oLC2uvRvuUA2RjfVJizzB</font></div> </div>');
+  
+document.getElementById('betNumberOne').value = 0.00000001;
+document.getElementById('betNumberTwo').value = 0.00000003;
+document.getElementById('betNumberThree').value = 0.00000007;
+document.getElementById('betNumberFour').value = 0.000000016;
+      
+      
+      
+      
+      //when set bet button is clicked, set the bet.
+document.getElementById('setBet').addEventListener("click", function() {
+     var countLosses = document.querySelectorAll('#history-my-bets-dice .text-danger').length;
+     var countWins = document.querySelectorAll('#history-my-bets-dice .text-success').length;
+     var winRatio = (countWins / 20) * 100;
+     var betOne = document.getElementById('betNumberOne').value;
+     var betTwo = document.getElementById('betNumberTwo').value;
+     var betThree = document.getElementById('betNumberThree').value;
+     var betFour = document.getElementById('betNumberFour').value;
+     var winChance = document.getElementById('editable-chance').innerText;
+        var lastBet0 = document.getElementById('history-my-bets-dice').rows[0].cells[7].innerText;
+    var lastBet1 = document.getElementById('history-my-bets-dice').rows[1].cells[7].innerText;
+    var lastBet2 = document.getElementById('history-my-bets-dice').rows[2].cells[7].innerText;
+    var lastBet3 = document.getElementById('history-my-bets-dice').rows[3].cells[7].innerText;
+
+
+      //document.getElementById('amount').value = betOne;
+      
+      if (lastBet0 < 0 && lastBet1 < 0 && lastBet2 < 0 && lastBet3 < 0){
+              document.getElementById('amount').value = document.getElementById('betNumberFour').value;
+			  calculate_profit();
+              play();
+          }
+      else if(lastBet0 < 0 && lastBet1 < 0 && lastBet2 < 0 && lastBet3 < 1){
+              document.getElementById('amount').value = document.getElementById('betNumberThree').value;
+			  calculate_profit();
+              play();
+      }
+      else if(lastBet1 < 0 && lastBet1 < 0 && lastBet1 < 1 && lastBet3 < 0){
+              document.getElementById('amount').value = document.getElementById('betNumberThree').value;
+			  calculate_profit();
+              play();
+      }
+      else if(lastBet1 < 0 && lastBet1 < 1 && lastBet1 < 0 && lastBet3 < 0){
+              document.getElementById('amount').value = document.getElementById('betNumberOne').value;
+			  calculate_profit();
+              play();
+      }
+      else if(lastBet1 < 1 && lastBet1 < 0 && lastBet1 < 0 && lastBet3 < 0){
+              document.getElementById('amount').value = document.getElementById('betNumberFour').value;
+			  calculate_profit();
+              play();
+      }
+      else if(lastBet0 < 0 && lastBet1 < 0 && lastBet1 < 1 && lastBet3 < 1){
+              document.getElementById('amount').value = document.getElementById('betNumberTwo').value;
+			  calculate_profit();
+              play();
+      }
+      else if(lastBet0 < 0 && lastBet1 < 1 && lastBet1 < 1 && lastBet3 < 0){
+              document.getElementById('amount').value = document.getElementById('betNumberTwo').value;
+			  calculate_profit();
+              play();
+      }
+      else if(lastBet0 < 0 && lastBet1 < 1 && lastBet1 < 0 && lastBet3 < 1){
+              document.getElementById('amount').value = document.getElementById('betNumberTwo').value;
+			  calculate_profit();
+              play();
+      }
+      else if(lastBet0 < 1 && lastBet1 < 0 && lastBet1 < 0 && lastBet3 < 1){
+              document.getElementById('amount').value = document.getElementById('betNumberTwo').value;
+			  calculate_profit();
+              play();
+      }
+      else if(lastBet0 < 1 && lastBet1 < 1 && lastBet1 < 0 && lastBet3 < 0){
+              document.getElementById('amount').value = document.getElementById('betNumberTwo').value;
+			  calculate_profit();
+              play();
+      }
+      else if(lastBet0 < 0 && lastBet1 < 1 && lastBet1 < 1 && lastBet3 < 1){
+              document.getElementById('amount').value = document.getElementById('betNumberTwo').value;
+			  calculate_profit();
+              play();
+      }
+      else if(lastBet0 < 1 && lastBet1 < 1 && lastBet1 < 1 && lastBet3 < 0){
+              document.getElementById('amount').value = document.getElementById('betNumberTwo').value;
+			  calculate_profit();
+              play();
+      }
+      else if(lastBet0 < 1 && lastBet1 < 1 && lastBet1 < 0 && lastBet3 < 1){
+              document.getElementById('amount').value = document.getElementById('betNumberTwo').value;
+			  calculate_profit();
+              play();
+      }
+      else if(lastBet0 < 1 && lastBet1 < 0 && lastBet1 < 1 && lastBet3 < 1){
+              document.getElementById('amount').value = document.getElementById('betNumberTwo').value;
+			  calculate_profit();
+              play();
+      }
+      else if(lastBet1 < 1 && lastBet1 < 1 && lastBet1 < 1 && lastBet3 < 1){
+              document.getElementById('amount').value = document.getElementById('betNumberOne').value;
+			  calculate_profit();
+              play();
+      }
+
+    
+});
+
+      
+document.getElementById('tipDude').addEventListener("click", function() {     
+    document.getElementById('message').innerText = "/tip Dudemaus";
+    document.getElementById('message').focus();
+    add_message();});$(document).keypress(function(e){if((e.which==13)&&($("#message").is(":focus"))){add_message();
+}
+});  
+
+
+
+document.getElementById('dudesAuto').addEventListener("click", function() {   
+
+        dudesAuto = setInterval(function(){ $("#setBet").click(); }, 900);
+
+});
+      
+document.getElementById('stopDudesAuto').addEventListener("click", function() {   
+
+           clearInterval(dudesAuto);
+
+
+});  
+      
+//change seeds every 5 mins
+setInterval(function(){ change_seeds(); }, 301000);
+          
