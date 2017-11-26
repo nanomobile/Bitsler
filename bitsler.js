@@ -80,7 +80,14 @@ function stop() {
 }
 
 setInterval(function() {
+	if (getBalance() <= 0) return;
+	
 	if (initialBet == 0) return;
+	
+	if (getBalance() >= 0.00000001 * balanceMax || getBalance() <= 0.00000001 * balanceMin) {
+		stop();	
+		return;
+	}
 	
 	setTimeout(function(){
 		roll();
@@ -88,8 +95,13 @@ setInterval(function() {
 
 	$(document).ready(function(){
 		if (getBalance() <= 0) return;
-		
+	
 		if (initialBet == 0) return;
+	
+		if (getBalance() >= 0.00000001 * balanceMax || getBalance() <= 0.00000001 * balanceMin) {
+			stop();	
+			return;
+		}
 		
 		counter++;
 		if (counter >= 20) {
