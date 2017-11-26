@@ -7,8 +7,8 @@ var speed = 50;
 var balanceMin = 1500000;
 var balanceMax = 2000000;
 
-var counterLimit = 30;
-var losesLimit = 9;
+var counterLimit = 20;
+var losesLimit = 5;
 
 var counter = 0;
 
@@ -124,7 +124,7 @@ setInterval(function() {
 		//}
 		
 		if (nbLoose >= losesLimit) {
-			setBet(initialBet * 2000);
+			setBet(initialBet * 100);
 			nbLoose = 0;
 		} else {
 			setBet(initialBet);
