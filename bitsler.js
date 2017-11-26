@@ -110,24 +110,30 @@ setInterval(function() {
 		// if loose
 		if(profit <= 0) {
 			nbLoose++;
+			if (nbLosse == 1) {
+				setBet(initialBet * 10);
+			} else {
+				setBet(initialBet);	
+			}
 		}
 		// if win
-		//else {
-			//setBet(initialBet);
-		//}
-		
-		if (nbLoose >= losesLimit) {
-			multiplyBet(100);
-			nbLoose = 0;
-		} else {
+		else {
+			nbLosse = 0;
 			setBet(initialBet);
 		}
 		
-		counter++;
-		if (counter >= counterLimit) {
-			nbLoose = 0;
-			counter = 0;	
-		}
+		//if (nbLoose >= losesLimit) {
+			//multiplyBet(100);
+			//nbLoose = 0;
+		//} else {
+			//setBet(initialBet);
+		//}
+		
+		//counter++;
+		//if (counter >= counterLimit) {
+			//nbLoose = 0;
+			//counter = 0;	
+		//}
 		
 		totalProfit += profit; // Increases current profit to total profit
 		
