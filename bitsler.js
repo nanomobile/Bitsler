@@ -8,7 +8,7 @@ var balanceMin = 1500000;
 var balanceMax = 2000000;
 
 var counterLimit = 30;
-var losesLimit = 4;
+var losesLimit = 3;
 
 var counter = 0;
 
@@ -106,25 +106,27 @@ setInterval(function() {
 			stop();	
 			return;
 		}
+
+		// if loose
+		if(profit <= 0) {
+			nbLoose++;
+		}
+		// if win
+		//else {
+			//setBet(initialBet);
+		//}
+		
+		if (nbLoose >= losesLimit) {
+			multiplyBet(100);
+			nbLoose = 0;
+		} else {
+			setBet(initialBet);
+		}
 		
 		counter++;
 		if (counter >= counterLimit) {
-			nbLoose = counter = 0;	
-		}
-
-		// if loose
-		if(profit <= 0){
-			nbLoose++;
-			if (nbLoose >= losesLimit) {
-				setBet(initialBet * 100);
-				nbLoose = 0;
-			} else {
-				setBet(initialBet);
-			}
-		}
-		// if win
-		else {
-			setBet(initialBet);
+			nbLoose = 0;
+			counter = 0;	
 		}
 		
 		totalProfit += profit; // Increases current profit to total profit
