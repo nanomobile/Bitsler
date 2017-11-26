@@ -8,7 +8,7 @@ var balanceMin = 1500000;
 var balanceMax = 2000000;
 
 var counterLimit = 30;
-var losesLimit = 7;
+var losesLimit = 8;
 
 var counter = 0;
 
