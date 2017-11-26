@@ -2,10 +2,14 @@ var nbLoose = 0; // Setting number of looses to zero
 var totalProfit = 0; // Total profit made
 
 var initialBet = 0.00000001 * 10; // Initial bet value. Change it to what fits the best  
-var speed = 50;
+var speed = 200;
 
 var balanceMin = 1500000;
 var balanceMax = 2000000;
+
+var counterLimit = 30;
+var losesLimit = 4;
+
 var counter = 0;
 
 setBet(initialBet);
@@ -104,16 +108,17 @@ setInterval(function() {
 		}
 		
 		counter++;
-		if (counter >= 20) {
+		if (counter >= counterLimit) {
 			nbLoose = counter = 0;	
 		}
 
 		// if loose
 		if(profit <= 0){
 			nbLoose++;
-			if (nbLoose >= 5) {
+			if (nbLoose >= losesLimit) {
 				setBet(initialBet * 100);
 				nbLoose = 0;
+				stop();
 			} else {
 				setBet(initialBet);
 			}
