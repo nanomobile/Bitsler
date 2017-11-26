@@ -118,7 +118,6 @@ setInterval(function() {
 			if (nbLoose >= losesLimit) {
 				setBet(initialBet * 100);
 				nbLoose = 0;
-				stop();
 			} else {
 				setBet(initialBet);
 			}
