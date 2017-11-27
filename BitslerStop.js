@@ -1,4 +1,4 @@
-var stopMax = 0.000001;
+var stopMax = 0.0001;
 var stopMin = -0.00001;
 
 var profit = parseFloat($('#auto_stats_profit').text());
