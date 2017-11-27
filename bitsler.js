@@ -4,11 +4,11 @@ var totalProfit = 0; // Total profit made
 var initialBet = 0.00000001 * 10; // Initial bet value. Change it to what fits the best  
 var speed = 50;
 
-var balanceMin = 1360000;
+var balanceMin = 1500000;
 var balanceMax = 2000000;
 
-var counterLimit = 5;
-var losesLimit = 5;
+var counterLimit = 7;
+var losesLimit = 7;
 
 var counter = 0;
 
@@ -129,7 +129,7 @@ setInterval(function() {
 		}
 		
 		if (nbLoose >= losesLimit) {
-			setBet(initialBet * 100);
+			setBet(initialBet * 500);
 			nbLoose = 0;
 		} else {
 			setBet(initialBet);
