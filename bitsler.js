@@ -117,6 +117,8 @@ setInterval(function() {
 			if (getBet() == riskBet1) {
 				setBet(riskBet2);
 				nbLoose = 0;
+			} else {
+				setBet(initialBet);
 			}
 			
 			//if (nbLoose == 1) {
@@ -129,7 +131,7 @@ setInterval(function() {
 		// if win
 		else {
 			//nbLoose = 0;
-			//setBet(initialBet);
+			setBet(initialBet);
 			counter++;
 			if (counter >= counterLimit) {
 				nbLoose = counter = 0;	
