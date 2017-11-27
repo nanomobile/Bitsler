@@ -2,12 +2,12 @@ var nbLoose = 0; // Setting number of looses to zero
 var totalProfit = 0; // Total profit made
 
 var initialBet = 0.00000001 * 10; // Initial bet value. Change it to what fits the best  
-var riskBet1 = initialBet * 500;
+var riskBet1 = 0.00000001 * 5000;
 var riskBet2 = riskBet1 * 10;
 
 var speed = 50;
 
-var balanceMin = 1500000;
+var balanceMin = 1535000;
 var balanceMax = 2000000;
 
 var counterLimit = 7;
