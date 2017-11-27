@@ -2,6 +2,9 @@ var nbLoose = 0; // Setting number of looses to zero
 var totalProfit = 0; // Total profit made
 
 var initialBet = 0.00000001 * 10; // Initial bet value. Change it to what fits the best  
+var riskBet1 = initialBet * 500;
+var riskBet2 = riskBet1 * 10;
+
 var speed = 50;
 
 var balanceMin = 1500000;
@@ -111,6 +114,11 @@ setInterval(function() {
 		if(getProfit() <= 0) {
 			nbLoose++;
 			counter = 0;
+			if (getBet() == riskBet1) {
+				setBet(riskBet2);
+				nbLoose = 0;
+			}
+			
 			//if (nbLoose == 1) {
 				//setBet(initialBet * 10);
 				//nbLoose = 0;
@@ -129,9 +137,9 @@ setInterval(function() {
 		}
 		
 		if (nbLoose >= losesLimit) {
-			setBet(initialBet * 500);
+			setBet(riskBet1);
 			nbLoose = 0;
-		} else {
+		} else if (getBet() != riskBet2) {
 			setBet(initialBet);
 		}
 		
