@@ -1,4 +1,5 @@
-var stoper = 0.000001;
+var stopMax = 0.000001;
+var stopMin = -0.00001;
 
 var profit = parseFloat($('#auto_stats_profit').text());
 
@@ -6,7 +7,7 @@ $('#history-my-bets-dice').unbind();
 
 $('#history-my-bets-dice').bind("DOMSubtreeModified", function(event) {
   if ($(event.currentTarget)) {
-    if (stoper < profit) {
+    if (stopMax < profit || stopMin > profit) {
       $('#btn-bet-stop-pilot-dice').trigger('click');
     }
     
