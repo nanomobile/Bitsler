@@ -7,8 +7,8 @@ var riskBet2 = riskBet1 * 10;
 
 var speed = 50;
 
-var balanceMin = 1535000;
-var balanceMax = 2000000;
+var balanceMin = 0;
+var balanceMax = 8000000;
 
 var counterLimit = 7;
 var losesLimit = 7;
@@ -113,13 +113,14 @@ setInterval(function() {
 		// if loose
 		if(getProfit() <= 0) {
 			nbLoose++;
-			counter = 0;
-			if (getBet() == riskBet1) {
-				setBet(riskBet2);
-				nbLoose = 0;
-			} else {
-				setBet(initialBet);
-			}
+			setBet(initialBet);
+			//counter = 0;
+			//if (getBet() == riskBet1) {
+				//setBet(riskBet2);
+				//nbLoose = 0;
+			//} else {
+				//setBet(initialBet);
+			//}
 			
 			//if (nbLoose == 1) {
 				//setBet(initialBet * 10);
@@ -130,20 +131,26 @@ setInterval(function() {
 		}
 		// if win
 		else {
-			//nbLoose = 0;
-			setBet(initialBet);
-			counter++;
-			if (counter >= counterLimit) {
-				nbLoose = counter = 0;	
+			if (nbLoose >= 1) {
+				setBet(initialBet * 10 * nbLoose);
+				nbLoose = 0;
+			} else {
+				setBet(initialBet);	
 			}
+			//nbLoose = 0;
+			//setBet(initialBet);
+			//counter++;
+			//if (counter >= counterLimit) {
+				//nbLoose = counter = 0;	
+			//}
 		}
 		
-		if (nbLoose >= losesLimit) {
-			setBet(riskBet1);
-			nbLoose = 0;
-		} else if (getBet() != riskBet2) {
-			setBet(initialBet);
-		}
+		//if (nbLoose >= losesLimit) {
+			//setBet(riskBet1);
+			//nbLoose = 0;
+		//} else if (getBet() != riskBet2) {
+			//setBet(initialBet);
+		//}
 		
 		totalProfit += profit; // Increases current profit to total profit
 		
