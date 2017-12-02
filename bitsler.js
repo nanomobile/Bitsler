@@ -1,5 +1,6 @@
 var nbLoose = 0; // Setting number of looses to zero
 var totalProfit = 0; // Total profit made
+var profit = 0;
 
 var initialBet = 0.00000001 * 10; // Initial bet value. Change it to what fits the best  
 var riskBet1 = 0.00000001 * 5000;
@@ -113,7 +114,6 @@ setInterval(function() {
 		// if loose
 		if(getProfit() <= 0) {
 			nbLoose++;
-			setBet(initialBet);
 			//counter = 0;
 			//if (getBet() == riskBet1) {
 				//setBet(riskBet2);
@@ -131,12 +131,6 @@ setInterval(function() {
 		}
 		// if win
 		else {
-			if (nbLoose >= 1) {
-				setBet(initialBet * 10 * nbLoose);
-				nbLoose = 0;
-			} else {
-				setBet(initialBet);	
-			}
 			//nbLoose = 0;
 			//setBet(initialBet);
 			//counter++;
@@ -152,7 +146,17 @@ setInterval(function() {
 			//setBet(initialBet);
 		//}
 		
-		totalProfit += profit; // Increases current profit to total profit
+		totalProfit += getProfit(); // Increases current profit to total profit
+		
+		if (totalProfit < profit) {
+			setBet(initialBet * 10);
+		} else {
+			setBet(initialBet);
+			
+			if (totalProfit > profit + 20) {
+				profit += 20;	
+			}
+		}
 		
 		//console.log('Total profit: ' +  totalProfit + '\n');
 	});
