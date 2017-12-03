@@ -106,7 +106,7 @@ setInterval(function() {
 			return;
 		}
 		
-		roll = getRoll();
+		var roll = getRoll();
     
     if (roll >= chance) {
       		counter++;
