@@ -8,7 +8,8 @@ var balanceMin = 0;
 var balanceMax = 8000000;
 
 var chance = 49.50;
-var counterMax = 7;
+var counterMax = 11;
+var coeff = 10;
 var counter = 0;
 
 setBet(initialBet);
@@ -124,7 +125,7 @@ setInterval(function() {
       		console.log(counter);
 	    	counter = 0;
 	    
-	    	setBet(initialBet * 10);
+	    	setBet(initialBet * coeff);
 		//setPayout(1.1);
 		setChance(49.50);
     } else {
