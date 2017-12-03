@@ -137,7 +137,7 @@ setInterval(function() {
         if (counterLow > counterMax && getChance() == initialChance) {
       		console.clear();
       		console.log(counterLow);
-	    	counter = 0;
+	    	counterLow = counterHigh = 0;
 	    
 	    	setBet(initialBet * coeff);
 		    //setPayout(1.1);
@@ -149,7 +149,7 @@ setInterval(function() {
         } else if (counterHigh > counterMax && getChance() == initialChance) {
 			console.clear();
 			console.log(counterHigh);
-		  	counter = 0;
+			counterLow = counterHigh = 0;
 	  
 		  	setBet(initialBet * coeff);
 		  	//setPayout(1.1);
