@@ -29,7 +29,7 @@ $('#history-my-bets-dice').bind("DOMSubtreeModified", function(event) {
     } else {
 	    	console.clear();
 	    	console.log(roll);
-	    	console.log(counter / 2);
+	    	console.log(counter / 2 - 0.5);
     }
   }
  });
