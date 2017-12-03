@@ -25,6 +25,7 @@ $('#history-my-bets-dice').bind("DOMSubtreeModified", function(event) {
     if (counter > counterMax) {
       		console.clear();
       		console.log(counter);
+	    	counter = 0;
       		$('#btn-bet-stop-pilot-dice').trigger('click');
     } else {
 	    	console.clear();
