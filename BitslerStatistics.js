@@ -19,15 +19,19 @@ $('#history-my-bets-dice').bind("DOMSubtreeModified", function(event) {
     roll = getRoll();
     
     if (roll >= chance) {
-      counter++;
+      		counter++;
     } else {
-      counter = 0;
+      		counter = 0;
     }
     
     if (counter > counterMax) {
-      console.clear();
-      console.log(counter);
-      $('#btn-bet-stop-pilot-dice').trigger('click');
+      		console.clear();
+      		console.log(counter);
+      		$('#btn-bet-stop-pilot-dice').trigger('click');
+    } else {
+	    	console.clear();
+	    	console.log(roll);
+	    	console.log(counter);
     }
   }
  });
