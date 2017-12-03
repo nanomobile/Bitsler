@@ -4,8 +4,8 @@ function getRoll() {
 	return parseFloat($('#history-my-bets-dice tr').first().find('td:last').prev().text());
 }
 
-var chance = 0.1;
-var counterMax = 1000 * 2 * 4.5;
+var chance = 1;
+var counterMax = 100 * 2 * 4.5;
 var counter = 0;
 
 $('#history-my-bets-dice').unbind();
