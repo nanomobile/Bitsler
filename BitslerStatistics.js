@@ -5,7 +5,7 @@ function getRoll() {
 }
 
 var chance = 0.1;
-var counterMax = 350;
+var counterMax = 1000 * 2 * 4.5;
 var counter = 0;
 
 var profit = parseFloat($('#auto_stats_profit').text());
