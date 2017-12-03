@@ -9,12 +9,17 @@ var balanceMax = 8000000;
 
 var chance = 49.50;
 var counterMax = 11;
-var coeff = 10;
-var counter = 0;
+var coeff = 1;
+var counterLow = 0;
+var counterHigh = 0;
+
+var isLow = true;
+
+var initialChance = 98;
 
 setBet(initialBet);
 //setPayout(1.1);
-setChance(98);
+setChance(initialChance);
 
 function multiplyBet(coeff){
 	$("#amount").val(parseFloat($("#amount").val()) * coeff);
@@ -29,6 +34,7 @@ function setBet(value){
 }
 
 function changeCondition() {
+	isLow = !isLow;
 	roll_by_condition();
 }
 
@@ -105,33 +111,58 @@ setInterval(function() {
 			return;
 		}
 		
-		if (getProfit() > 0 && getChance() < 98) {
+		if (getProfit() > 0 && getChance() == chance) {
 			setBet(initialBet);
-			setChance(98);
-		} else if (getProfit() < 0 && getChance() < 98) {
+			setChance(initialChance);
+		} else if (getProfit() < 0 && getChance() == chance) {
 			setBet(getBet() * 2);	
 		}
 		
 		var roll = getRoll();
     
-    if (roll >= chance) {
-      		counter++;
-    } else {
-      		counter = 0;
-    }
+        if (getChance() == initialChance) {
+            if (roll >= chance) {
+                    counterLow++;
+            } else {
+                    counterLow = 0;
+			}
+			
+			if (roll <= 100 - chance) {
+				counterHigh++;
+			} else {
+				counterHigh = 0;
+			}
+        }
     
-    if (counter > counterMax) {
+        if (counterLow > counterMax && getChance() == initialChance) {
       		console.clear();
-      		console.log(counter);
+      		console.log(counterLow);
 	    	counter = 0;
 	    
 	    	setBet(initialBet * coeff);
-		//setPayout(1.1);
-		setChance(49.50);
-    } else {
-	    	console.clear();
-	    	console.log(roll);
-	    	console.log(counter);
-    }
+		    //setPayout(1.1);
+			setChance(chance);
+			
+			if (isLow == false) {
+				changeCondition();
+			}
+        } else if (counterHigh > counterMax && getChance() == initialChance) {
+			console.clear();
+			console.log(counterHigh);
+		  	counter = 0;
+	  
+		  	setBet(initialBet * coeff);
+		  	//setPayout(1.1);
+			setChance(chance);
+			
+			if (isLow == true) {
+				changeCondition();
+			}
+	  } else {
+            console.clear();
+            console.log(roll);
+			console.log('Counter Low = ' + counterLow);
+			console.log('Counter High = ' + counterHigh);
+        }
 	});
 }, speed * 4);
