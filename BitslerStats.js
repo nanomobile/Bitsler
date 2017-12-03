@@ -8,7 +8,7 @@ var balanceMin = 0;
 var balanceMax = 8000000;
 
 var chance = 10;
-var counterMax = 77;
+var counterMax = 50;
 var counter = 0;
 
 setBet(initialBet);
@@ -105,7 +105,10 @@ setInterval(function() {
 		}
 		
 		if (getProfit() > 0 && getChance() < 98) {
+			setBet(initialBet);
 			setChance(98);
+		} else if (getProfit() < 0 && getChance() < 98) {
+			setBet(getBet() * 0.1);
 		}
 		
 		var roll = getRoll();
@@ -120,6 +123,8 @@ setInterval(function() {
       		console.clear();
       		console.log(counter);
 	    	counter = 0;
+	    
+	    	setBet(initialBet * 10);
 		//setPayout(1.1);
 		setChance(10);
     } else {
