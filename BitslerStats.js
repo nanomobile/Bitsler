@@ -7,8 +7,8 @@ var speed = 50;
 var balanceMin = 0;
 var balanceMax = 8000000;
 
-var chance = 0.1;
-var counterMax = 5000;
+var chance = 10;
+var counterMax = 77;
 var counter = 0;
 
 setBet(initialBet);
@@ -44,8 +44,7 @@ function setPayout(value) {
 }
 
 function getChance() {
-	var chance = parseFloat($("#editable-chance-field").val());
-	return chance;
+	return parseFloat($("#editable-chance-field").val());
 }
 
 function getPayout() {
@@ -57,8 +56,7 @@ function getProfit() {
 }
 
 function getRoll() {
-	var roll = parseFloat($('#history-my-bets-dice tr').first().find('td:last').prev().text());
-	return roll;	
+	return parseFloat($('#history-my-bets-dice tr').first().find('td:last').prev().text());
 }
 
 function getBalance() {
@@ -106,6 +104,10 @@ setInterval(function() {
 			return;
 		}
 		
+		if (getProfit() > 0 && getChance() < 98) {
+			setChance(98);
+		}
+		
 		var roll = getRoll();
     
     if (roll >= chance) {
@@ -117,8 +119,9 @@ setInterval(function() {
     if (counter > counterMax) {
       		console.clear();
       		console.log(counter);
-	    	  counter = 0;
-      		stop();
+	    	counter = 0;
+		//setPayout(1.1);
+		setChance(10);
     } else {
 	    	console.clear();
 	    	console.log(roll);
