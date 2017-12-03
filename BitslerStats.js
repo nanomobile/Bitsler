@@ -7,8 +7,8 @@ var speed = 50;
 var balanceMin = 0;
 var balanceMax = 8000000;
 
-var chance = 1;
-var counterMax = 100 * 4.5;
+var chance = 0.1;
+var counterMax = 5000;
 var counter = 0;
 
 setBet(initialBet);
