@@ -7,15 +7,19 @@ var speed = 50;
 var balanceMin = 0;
 var balanceMax = 8000000;
 
-var chance = 49.50;
-var counterMax = 11;
+var chance = 1;
+var counterMax = 1050;
+var initialCoeff = 50;
 var coeff = 1;
+var multiplier = 1;
 var counterLow = 0;
 var counterHigh = 0;
 
 var isLow = true;
 
 var initialChance = 98;
+
+var betLimit = 512;
 
 setBet(initialBet);
 //setPayout(1.1);
@@ -79,6 +83,10 @@ function roll(){
 		stop();	
 		return;
 	}
+
+	if (getBet() > betLimit) {
+		setBet(initialBet);
+	}
 	
 	$("#btn-bet-dice").click();
 }
@@ -115,19 +123,25 @@ setInterval(function() {
 			setBet(initialBet);
 			setChance(initialChance);
 		} else if (getProfit() < 0 && getChance() == chance) {
-			setBet(getBet() * 2);	
+			setBet(getBet() * multiplier);	
 		}
 		
 		var roll = getRoll();
     
         if (getChance() == initialChance) {
+			if (getProfit() < 0 && getBet() == initialBet) {
+				setBet(initialBet * initialCoeff);
+			} else {
+				setBet(initialBet);
+			}
+
             if (roll >= chance) {
                     counterLow++;
             } else {
                     counterLow = 0;
 			}
 			
-			if (roll <= 100 - chance) {
+			if (roll < 100 - chance) {
 				counterHigh++;
 			} else {
 				counterHigh = 0;
@@ -158,7 +172,7 @@ setInterval(function() {
 			if (isLow == true) {
 				changeCondition();
 			}
-	  } else {
+	  	} else {
             console.clear();
             console.log(roll);
 			console.log('Counter Low = ' + counterLow);
