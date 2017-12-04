@@ -9,7 +9,7 @@ var balanceMax = 8000000;
 
 var chance = 1;
 var counterMax = 1050;
-var initialCoeff = 10;
+var initialCoeff = 1;
 var coeff = 25;
 var multiplier = 1;
 var counterLow = 0;
@@ -151,7 +151,7 @@ setInterval(function() {
         if (counterLow > counterMax && getChance() == initialChance) {
       		console.clear();
       		console.log(counterLow);
-	    	counterLow = counterHigh = 0;
+	    	// counterLow = counterHigh = 0;
 	    
 	    	setBet(initialBet * coeff);
 		    //setPayout(1.1);
@@ -163,7 +163,7 @@ setInterval(function() {
         } else if (counterHigh > counterMax && getChance() == initialChance) {
 			console.clear();
 			console.log(counterHigh);
-			counterLow = counterHigh = 0;
+			// counterLow = counterHigh = 0;
 	  
 		  	setBet(initialBet * coeff);
 		  	//setPayout(1.1);
