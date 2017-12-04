@@ -252,7 +252,7 @@ setInterval(function() {
 
 			// stop();
 			// return;
-	  	} if (counterLow2 > counterMax2 && getChance() == initialChance) {
+		} else if (counterLow2 > counterMax2 && getChance() == initialChance) {
 			win = 0;
 
       		console.clear();
@@ -286,7 +286,7 @@ setInterval(function() {
 
 			// stop();
 			// return;
-	  	} if (counterLow3 > counterMax3 && getChance() == initialChance) {
+		} else if (counterLow3 > counterMax3 && getChance() == initialChance) {
 			win = 0;
 
       		console.clear();
