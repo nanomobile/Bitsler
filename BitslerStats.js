@@ -21,11 +21,19 @@ var multiplier2 = 2;
 var counterLow2 = 0;
 var counterHigh2 = 0;
 
+var chance3 = 33;
+var counterMax3 = 31;
+var initialCoeff3 = 1;
+var coeff3 = 1;
+var multiplier3 = 2;
+var counterLow3 = 0;
+var counterHigh3 = 0;
+
 var isLow = true;
 
 var initialChance = 98;
 
-var betLimit = 64;
+var betLimit = 256;
 
 var winMax = 1;
 var win = 0;
@@ -151,6 +159,18 @@ setInterval(function() {
 		} else if (getProfit() < 0 && getChance() == chance2) {
 			setBet(getBet() * multiplier2);	
 		}
+
+		if (getProfit() > 0 && getChance() == chance3) {
+			win++;
+			
+			setBet(initialBet);
+
+			if (win >= winMax) {
+				setChance(initialChance);
+			}
+		} else if (getProfit() < 0 && getChance() == chance3) {
+			setBet(getBet() * multiplier3);	
+		}
 		
 		var roll = getRoll();
     
@@ -184,6 +204,18 @@ setInterval(function() {
 			} else {
 				counterHigh2 = 0;
 			}
+
+			if (roll >= chance3) {
+                counterLow3++;
+            } else {
+                counterLow3 = 0;
+			}
+			
+			if (roll < 100 - chance3) {
+				counterHigh3++;
+			} else {
+				counterHigh3 = 0;
+			}
         }
     
         if (counterLow > counterMax && getChance() == initialChance) {
@@ -191,7 +223,7 @@ setInterval(function() {
 
       		console.clear();
       		console.log(counterLow);
-	    	counterLow = counterHigh = counterLow2 = counterHigh2 = 0;
+			counterLow = counterHigh = counterLow2 = counterHigh2 = counterLow3 = counterHigh3 = 0;
 	    
 	    	setBet(initialBet * coeff);
 		    //setPayout(1.1);
@@ -208,7 +240,7 @@ setInterval(function() {
 
 			console.clear();
 			console.log(counterHigh);
-			counterLow = counterHigh = counterLow2 = counterHigh2 = 0;
+			counterLow = counterHigh = counterLow2 = counterHigh2 = counterLow3 = counterHigh3 = 0;
 	  
 		  	setBet(initialBet * coeff);
 		  	//setPayout(1.1);
@@ -225,7 +257,7 @@ setInterval(function() {
 
       		console.clear();
       		console.log(counterLow2);
-			counterLow = counterHigh = counterLow2 = counterHigh2 = 0;
+			counterLow = counterHigh = counterLow2 = counterHigh2 = counterLow3 = counterHigh3 = 0;
 	    
 	    	setBet(initialBet * coeff2);
 		    //setPayout(1.1);
@@ -242,11 +274,45 @@ setInterval(function() {
 
 			console.clear();
 			console.log(counterHigh2);
-			counterLow = counterHigh = counterLow2 = counterHigh2 = 0;
+			counterLow = counterHigh = counterLow2 = counterHigh2 = counterLow3 = counterHigh3 = 0;
 	  
 		  	setBet(initialBet * coeff2);
 		  	//setPayout(1.1);
 			setChance(chance2);
+			
+			if (isLow == true) {
+				changeCondition();
+			}
+
+			// stop();
+			// return;
+	  	} if (counterLow3 > counterMax3 && getChance() == initialChance) {
+			win = 0;
+
+      		console.clear();
+      		console.log(counterLow3);
+			counterLow = counterHigh = counterLow2 = counterHigh2 = counterLow3 = counterHigh3 = 0;
+	    
+	    	setBet(initialBet * coeff3);
+		    //setPayout(1.1);
+			setChance(chance3);
+			
+			if (isLow == false) {
+				changeCondition();
+			}
+
+			// stop();
+			// return;
+        } else if (counterHigh3 > counterMax3 && getChance() == initialChance) {
+			win = 0;
+
+			console.clear();
+			console.log(counterHigh3);
+			counterLow = counterHigh = counterLow2 = counterHigh2 = counterLow3 = counterHigh3 = 0;
+	  
+		  	setBet(initialBet * coeff3);
+		  	//setPayout(1.1);
+			setChance(chance3);
 			
 			if (isLow == true) {
 				changeCondition();
@@ -261,6 +327,8 @@ setInterval(function() {
 			console.log('Counter High = ' + counterHigh);
 			console.log('Counter Low 2 = ' + counterLow2);
 			console.log('Counter High 2 = ' + counterHigh2);
+			console.log('Counter Low 3 = ' + counterLow3);
+			console.log('Counter High 3 = ' + counterHigh3);
         }
 	});
 }, speed * 2);
