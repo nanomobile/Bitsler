@@ -19,9 +19,9 @@ var isLow = true;
 
 var initialChance = 98;
 
-var betLimit = 128;
+var betLimit = 64;
 
-var winMax = 3;
+var winMax = 1;
 var win = 0;
 
 setBet(initialBet);
@@ -127,7 +127,7 @@ setInterval(function() {
 			
 			setBet(initialBet);
 
-			if (win > winMax) {
+			if (win >= winMax) {
 				setChance(initialChance);
 			}
 		} else if (getProfit() < 0 && getChance() == chance) {
