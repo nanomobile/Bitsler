@@ -8,7 +8,7 @@ var balanceMin = 0;
 var balanceMax = 8000000;
 
 var chance = 1;
-var counterMax = 1500;
+var counterMax = 1700;
 var initialCoeff = 1;
 var coeff = 1;
 var multiplier = 1;
