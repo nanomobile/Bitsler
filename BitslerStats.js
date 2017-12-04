@@ -191,7 +191,7 @@ setInterval(function() {
 
       		console.clear();
       		console.log(counterLow);
-	    	// counterLow = counterHigh = 0;
+	    	counterLow = counterHigh = counterLow2 = counterHigh2 = 0;
 	    
 	    	setBet(initialBet * coeff);
 		    //setPayout(1.1);
@@ -208,7 +208,7 @@ setInterval(function() {
 
 			console.clear();
 			console.log(counterHigh);
-			// counterLow = counterHigh = 0;
+			counterLow = counterHigh = counterLow2 = counterHigh2 = 0;
 	  
 		  	setBet(initialBet * coeff);
 		  	//setPayout(1.1);
@@ -225,7 +225,7 @@ setInterval(function() {
 
       		console.clear();
       		console.log(counterLow2);
-	    	// counterLow = counterHigh = 0;
+			counterLow = counterHigh = counterLow2 = counterHigh2 = 0;
 	    
 	    	setBet(initialBet * coeff2);
 		    //setPayout(1.1);
@@ -242,7 +242,7 @@ setInterval(function() {
 
 			console.clear();
 			console.log(counterHigh2);
-			// counterLow = counterHigh = 0;
+			counterLow = counterHigh = counterLow2 = counterHigh2 = 0;
 	  
 		  	setBet(initialBet * coeff2);
 		  	//setPayout(1.1);
