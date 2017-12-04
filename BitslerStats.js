@@ -8,7 +8,7 @@ var balanceMin = 0;
 var balanceMax = 8000000;
 
 var chance = 49.50;
-var counterMax = 22;
+var counterMax = 23;
 var initialCoeff = 1;
 var coeff = 1;
 var multiplier = 2;
@@ -19,9 +19,9 @@ var isLow = true;
 
 var initialChance = 98;
 
-var betLimit = 512;
+var betLimit = 128;
 
-var winMax = 7;
+var winMax = 3;
 var win = 0;
 
 setBet(initialBet);
@@ -197,4 +197,4 @@ setInterval(function() {
 			console.log('Counter High = ' + counterHigh);
         }
 	});
-}, speed * 4);
+}, speed * 2);
