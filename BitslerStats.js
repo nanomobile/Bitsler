@@ -2,14 +2,14 @@ var nbLoose = 0; // Setting number of looses to zero
 
 var initialBet = 0.00000001 * 1; // Initial bet value. Change it to what fits the best
 
-var speed = 50;
+var speed = 10;
 
 var balanceMin = 0;
 var balanceMax = 8000000;
 
 var chance = 1;
 var counterMax = 1050;
-var initialCoeff = 50;
+var initialCoeff = 10;
 var coeff = 25;
 var multiplier = 1;
 var counterLow = 0;
