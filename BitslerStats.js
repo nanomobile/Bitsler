@@ -7,11 +7,11 @@ var speed = 10;
 var balanceMin = 0;
 var balanceMax = 8000000;
 
-var chance = 49.50;
-var counterMax = 23;
+var chance = 1;
+var counterMax = 1400;
 var initialCoeff = 1;
 var coeff = 1;
-var multiplier = 2;
+var multiplier = 1;
 var counterLow = 0;
 var counterHigh = 0;
 
