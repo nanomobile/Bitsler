@@ -7,11 +7,11 @@ var speed = 10;
 var balanceMin = 0;
 var balanceMax = 8000000;
 
-var chance = 1;
-var counterMax = 1050;
+var chance = 49.50;
+var counterMax = 22;
 var initialCoeff = 1;
-var coeff = 25;
-var multiplier = 1;
+var coeff = 1;
+var multiplier = 2;
 var counterLow = 0;
 var counterHigh = 0;
 
@@ -20,6 +20,9 @@ var isLow = true;
 var initialChance = 98;
 
 var betLimit = 512;
+
+var winMax = 7;
+var win = 0;
 
 setBet(initialBet);
 //setPayout(1.1);
@@ -120,8 +123,13 @@ setInterval(function() {
 		}
 		
 		if (getProfit() > 0 && getChance() == chance) {
+			win++;
+			
 			setBet(initialBet);
-			setChance(initialChance);
+
+			if (win > winMax) {
+				setChance(initialChance);
+			}
 		} else if (getProfit() < 0 && getChance() == chance) {
 			setBet(getBet() * multiplier);	
 		}
@@ -136,9 +144,9 @@ setInterval(function() {
 			}
 
             if (roll >= chance) {
-                    counterLow++;
+                counterLow++;
             } else {
-                    counterLow = 0;
+                counterLow = 0;
 			}
 			
 			if (roll < 100 - chance) {
@@ -149,6 +157,8 @@ setInterval(function() {
         }
     
         if (counterLow > counterMax && getChance() == initialChance) {
+			win = 0;
+
       		console.clear();
       		console.log(counterLow);
 	    	// counterLow = counterHigh = 0;
@@ -160,7 +170,12 @@ setInterval(function() {
 			if (isLow == false) {
 				changeCondition();
 			}
+
+			// stop();
+			// return;
         } else if (counterHigh > counterMax && getChance() == initialChance) {
+			win = 0;
+
 			console.clear();
 			console.log(counterHigh);
 			// counterLow = counterHigh = 0;
@@ -172,6 +187,9 @@ setInterval(function() {
 			if (isLow == true) {
 				changeCondition();
 			}
+
+			// stop();
+			// return;
 	  	} else {
             console.clear();
             console.log(roll);
