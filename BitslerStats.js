@@ -14,7 +14,7 @@ var counterLow = 0;
 var counterHigh = 0;
 
 var chance2 = 49.50;
-var counterMax2 = 23;
+var counterMax2 = 22;
 var initialCoeff2 = 1;
 var coeff2 = 1;
 var multiplier2 = 2;
@@ -22,7 +22,7 @@ var counterLow2 = 0;
 var counterHigh2 = 0;
 
 var chance3 = 33;
-var counterMax3 = 31;
+var counterMax3 = 33;
 var initialCoeff3 = 1;
 var coeff3 = 1;
 var multiplier3 = 2;
