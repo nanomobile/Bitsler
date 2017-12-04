@@ -33,7 +33,7 @@ var isLow = true;
 
 var initialChance = 98;
 
-var betLimit = 256;
+var betLimit = 512;
 
 var winMax = 1;
 var win = 0;
