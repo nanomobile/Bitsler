@@ -17,20 +17,20 @@ function show_stats(){
  console.log("acumulado 80.00-89.99: "+ vet_acc[8].toString());
  console.log("acumulado 90.00-99.99: "+ vet_acc[9].toString());
  console.log("*------------*------------*");
- console.log("sequencia 0.00-9.99: "+ vet_seq[0].toString());
- console.log("sequencia 10.00-19.99: "+ vet_seq[1].toString());
- console.log("sequencia 20.00-29.99: "+ vet_seq[2].toString());
- console.log("sequencia 30.00-39.99: "+ vet_seq[3].toString());
- console.log("sequencia 40.00-49.99: "+ vet_seq[4].toString());
- console.log("sequencia 50.00-59.99: "+ vet_seq[5].toString());
- console.log("sequencia 60.00-69.99: "+ vet_seq[6].toString());
- console.log("sequencia 70.00-79.99: "+ vet_seq[7].toString());
- console.log("sequencia 80.00-89.99: "+ vet_seq[8].toString());
- console.log("sequencia 90.00-99.99: "+ vet_seq[9].toString());
- console.log("*------------*------------*"); 
+ //console.log("sequencia 0.00-9.99: "+ vet_seq[0].toString());
+ //console.log("sequencia 10.00-19.99: "+ vet_seq[1].toString());
+ //console.log("sequencia 20.00-29.99: "+ vet_seq[2].toString());
+ //console.log("sequencia 30.00-39.99: "+ vet_seq[3].toString());
+ //console.log("sequencia 40.00-49.99: "+ vet_seq[4].toString());
+ //console.log("sequencia 50.00-59.99: "+ vet_seq[5].toString());
+ //console.log("sequencia 60.00-69.99: "+ vet_seq[6].toString());
+ //console.log("sequencia 70.00-79.99: "+ vet_seq[7].toString());
+ //console.log("sequencia 80.00-89.99: "+ vet_seq[8].toString());
+ //console.log("sequencia 90.00-99.99: "+ vet_seq[9].toString());
+ //console.log("*------------*------------*"); 
 }
 
-$('#btn-bet-start-pilot-dice').trigger('click');
+//$('#btn-bet-start-pilot-dice').trigger('click');
 
 $('#history-my-bets-dice').unbind();
 
