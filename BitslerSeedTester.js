@@ -3,19 +3,22 @@ var vet_acc=new Array(0,0,0,0,0,0,0,0,0,0);
 var vet_seq=new Array(0,0,0,0,0,0,0,0,0,0);
 var last_roll=-1,roll,pos,qnt_seq=1;
 var cont=1;
+var isLow = true;
 
 function show_stats(){
  console.log("*------------*------------*");
- console.log("acumulado 0.00-9.99: "+ vet_acc[0].toString());
- console.log("acumulado 10.00-19.99: "+ vet_acc[1].toString());
- console.log("acumulado 20.00-29.99: "+ vet_acc[2].toString());
- console.log("acumulado 30.00-39.99: "+ vet_acc[3].toString());
- console.log("acumulado 40.00-49.99: "+ vet_acc[4].toString());
- console.log("acumulado 50.00-59.99: "+ vet_acc[5].toString());
- console.log("acumulado 60.00-69.99: "+ vet_acc[6].toString());
- console.log("acumulado 70.00-79.99: "+ vet_acc[7].toString());
- console.log("acumulado 80.00-89.99: "+ vet_acc[8].toString());
- console.log("acumulado 90.00-99.99: "+ vet_acc[9].toString());
+ console.log("acumulado 0.00-49.99: "+ (vet_acc[0] + vet_acc[1] + vet_acc[2] + vet_acc[3] + vet_acc[4]).toString());
+ console.log("acumulado 50.00-99.99: "+ (vet_acc[5] + vet_acc[6] + vet_acc[7] + vet_acc[8] + vet_acc[9]).toString());
+ //console.log("acumulado 0.00-9.99: "+ vet_acc[0].toString());
+ //console.log("acumulado 10.00-19.99: "+ vet_acc[1].toString());
+ //console.log("acumulado 20.00-29.99: "+ vet_acc[2].toString());
+ //console.log("acumulado 30.00-39.99: "+ vet_acc[3].toString());
+ //console.log("acumulado 40.00-49.99: "+ vet_acc[4].toString());
+ //console.log("acumulado 50.00-59.99: "+ vet_acc[5].toString());
+ //console.log("acumulado 60.00-69.99: "+ vet_acc[6].toString());
+ //console.log("acumulado 70.00-79.99: "+ vet_acc[7].toString());
+ //console.log("acumulado 80.00-89.99: "+ vet_acc[8].toString());
+ //console.log("acumulado 90.00-99.99: "+ vet_acc[9].toString());
  console.log("*------------*------------*");
  //console.log("sequencia 0.00-9.99: "+ vet_seq[0].toString());
  //console.log("sequencia 10.00-19.99: "+ vet_seq[1].toString());
@@ -30,13 +33,26 @@ function show_stats(){
  //console.log("*------------*------------*"); 
 }
 
-//$('#btn-bet-start-pilot-dice').trigger('click');
+$('#btn-bet-start-pilot-dice').trigger('click');
 
 $('#history-my-bets-dice').unbind();
 
 
 $('#history-my-bets-dice').bind("DOMSubtreeModified",function(event){
 if( $(event.currentTarget) ){	
+	
+	if (vet_acc[0] + vet_acc[1] + vet_acc[2] + vet_acc[3] + vet_acc[4] < vet_acc[5] + vet_acc[6] + vet_acc[7] + vet_acc[8] + vet_acc[9]) {
+	    if (false == isLow) {
+		    isLow = true;
+		    roll_by_condition();
+	    }
+	} else {
+	    if (true == isLow) {
+		    isLow = false;
+		    roll_by_condition();
+	    }
+	}
+	
         if(cont%2==1){
 		
 	}
