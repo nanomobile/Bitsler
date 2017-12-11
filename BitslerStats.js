@@ -22,7 +22,7 @@ var counterLow2 = 0;
 var counterHigh2 = 0;
 
 var chance3 = 330;
-var counterMax3 = 37;
+var counterMax3 = 370;
 var initialCoeff3 = 1;
 var coeff3 = 1;
 var multiplier3 = 2;
