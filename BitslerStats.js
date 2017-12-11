@@ -1,3 +1,11 @@
+
+// 20:32:17.193 VM364:325 76.34  					// #Bet = 163716
+// 20:32:17.194 VM364:326 Counter Low = 8779
+// 20:32:17.194 VM364:327 Counter High = 52003
+
+// 6179a847e0c8ae6a4363ffe7cc60c3b066050ecb6fe1ec73f52cbfcc4c50b9d401d2d7ca36406c42803f063a6a68bfceeee32c442f300f12f40fe898906aa2ea    // server seed hashed
+// d70bfb877483b4af4165e2da812bb960cc1e0705   // client seed
+
 var initialBet = 0.00000001 * 1; // Initial bet value. Change it to what fits the best
 
 var speed = 10;
@@ -8,21 +16,21 @@ var balanceMax = 8000000;
 var chance = 0.01;
 var counterMax = 148400;
 var initialCoeff = 1;
-var coeff = 1;
-var multiplier = 1;
+var coeff = 10;
+var multiplier = 10;
 var counterLow = 0;
 var counterHigh = 0;
 
 var chance2 = 49.50;
-var counterMax2 = 260;
+var counterMax2 = 27;
 var initialCoeff2 = 1;
 var coeff2 = 1;
 var multiplier2 = 2;
 var counterLow2 = 0;
 var counterHigh2 = 0;
 
-var chance3 = 330;
-var counterMax3 = 370;
+var chance3 = 33;
+var counterMax3 = 37;
 var initialCoeff3 = 1;
 var coeff3 = 1;
 var multiplier3 = 2;
@@ -31,7 +39,7 @@ var counterHigh3 = 0;
 
 var isLow = true;
 
-var initialChance = 98;
+var initialChance = 50;
 
 var betLimit = 512;
 
@@ -101,8 +109,9 @@ function roll(){
 		return;
 	}
 
-	if (getBet() > betLimit) {
+	if (getBet() > betLimit || getBet() > getBalance()) {
 		setBet(initialBet);
+		return;
 	}
 	
 	$("#btn-bet-dice").click();
@@ -121,6 +130,11 @@ setInterval(function() {
 		stop();	
 		return;
 	}
+
+	if (getBet() > betLimit || getBet() > getBalance()) {
+		setBet(initialBet);
+		return;
+	}
 	
 	setTimeout(function(){
 		roll();
@@ -135,6 +149,39 @@ setInterval(function() {
 			stop();	
 			return;
 		}
+
+		if (getBet() > betLimit || getBet() > getBalance()) {
+			setBet(initialBet);
+			return;
+		}
+
+		// setChance(Math.floor((Math.random() * initialChance) + 0.01));
+
+		if (getChance() > 0.01) {
+			if (getChance() > 1) {
+				setChance(getChance() - 0.1);
+			} else {
+				setChance(getChance() - 0.1);
+			}
+		} else if (0.01 >= getChance()) {
+			setChance(initialChance);
+		}
+
+		// if (getProfit() > 0) {
+		// 	if (getChance() < initialChance) {
+		// 		setChance(getChance() * 2);
+		// 	} else {
+		// 		setChance(0.01);
+		// 	}
+		// } else {
+		// 	if (getChance() >= 0.01) {
+		// 		setChance(getChance() / 2);
+		// 	} else {
+		// 		setChance(initialChance);
+		// 	}
+		// }
+
+		return;
 		
 		if (getProfit() > 0 && getChance() == chance) {
 			win++;
@@ -233,8 +280,8 @@ setInterval(function() {
 				changeCondition();
 			}
 
-			stop();
-			return;
+			// stop();
+			// return;
         } else if (counterHigh > counterMax && getChance() == initialChance) {
 			win = 0;
 
@@ -250,8 +297,8 @@ setInterval(function() {
 				changeCondition();
 			}
 
-			stop();
-			return;
+			// stop();
+			// return;
 		} else if (counterLow2 > counterMax2 && getChance() == initialChance) {
 			win = 0;
 
@@ -331,4 +378,4 @@ setInterval(function() {
 			console.log('Counter High 3 = ' + counterHigh3);
         }
 	});
-}, speed * 2);
+}, speed * 4);
