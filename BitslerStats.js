@@ -6,7 +6,7 @@ var balanceMin = 0;
 var balanceMax = 8000000;
 
 var chance = 1;
-var counterMax = 1700;
+var counterMax = 148400;
 var initialCoeff = 1;
 var coeff = 1;
 var multiplier = 1;
@@ -14,14 +14,14 @@ var counterLow = 0;
 var counterHigh = 0;
 
 var chance2 = 49.50;
-var counterMax2 = 26;
+var counterMax2 = 260;
 var initialCoeff2 = 1;
 var coeff2 = 1;
 var multiplier2 = 2;
 var counterLow2 = 0;
 var counterHigh2 = 0;
 
-var chance3 = 33;
+var chance3 = 330;
 var counterMax3 = 37;
 var initialCoeff3 = 1;
 var coeff3 = 1;
@@ -233,8 +233,8 @@ setInterval(function() {
 				changeCondition();
 			}
 
-			// stop();
-			// return;
+			stop();
+			return;
         } else if (counterHigh > counterMax && getChance() == initialChance) {
 			win = 0;
 
@@ -250,8 +250,8 @@ setInterval(function() {
 				changeCondition();
 			}
 
-			// stop();
-			// return;
+			stop();
+			return;
 		} else if (counterLow2 > counterMax2 && getChance() == initialChance) {
 			win = 0;
 
