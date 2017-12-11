@@ -5,7 +5,7 @@ var speed = 10;
 var balanceMin = 0;
 var balanceMax = 8000000;
 
-var chance = 1;
+var chance = 0.01;
 var counterMax = 148400;
 var initialCoeff = 1;
 var coeff = 1;
