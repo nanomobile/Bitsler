@@ -1,24 +1,9 @@
-var nbLoose = 0; // Setting number of looses to zero
-var totalProfit = 0; // Total profit made
-var profit = 0;
-
-var initialBet = 0.00000001 * 10; // Initial bet value. Change it to what fits the best  
-var riskBet1 = 0.00000001 * 5000;
-var riskBet2 = riskBet1 * 10;
+var initialBet = 0.00000001 * 1;
 
 var speed = 50;
 
-var balanceMin = 0;
-var balanceMax = 8000000;
-
-var counterLimit = 7;
-var losesLimit = 7;
-
-var counter = 0;
-
 setBet(initialBet);
-//setPayout(1.1);
-setChance(90);
+setChance(0.01);
 
 function multiplyBet(coeff){
 	$("#amount").val(parseFloat($("#amount").val()) * coeff);
@@ -75,11 +60,6 @@ function roll(){
 	
 	if (initialBet == 0) return;
 	
-	if (getBalance() >= 0.00000001 * balanceMax || getBalance() <= 0.00000001 * balanceMin) {
-		stop();	
-		return;
-	}
-	
 	$("#btn-bet-dice").click();
 }
 
@@ -92,72 +72,7 @@ setInterval(function() {
 	
 	if (initialBet == 0) return;
 	
-	if (getBalance() >= 0.00000001 * balanceMax || getBalance() <= 0.00000001 * balanceMin) {
-		stop();	
-		return;
-	}
-	
 	setTimeout(function(){
 		roll();
 	},speed);
-
-	$(document).ready(function(){
-		if (getBalance() <= 0) return;
-	
-		if (initialBet == 0) return;
-	
-		if (getBalance() >= 0.00000001 * balanceMax || getBalance() <= 0.00000001 * balanceMin) {
-			stop();	
-			return;
-		}
-		
-		// if loose
-		if(getProfit() <= 0) {
-			nbLoose++;
-			//counter = 0;
-			//if (getBet() == riskBet1) {
-				//setBet(riskBet2);
-				//nbLoose = 0;
-			//} else {
-				//setBet(initialBet);
-			//}
-			
-			//if (nbLoose == 1) {
-				//setBet(initialBet * 10);
-				//nbLoose = 0;
-			//} else {
-				//setBet(initialBet);
-			//}
-		}
-		// if win
-		else {
-			//nbLoose = 0;
-			//setBet(initialBet);
-			//counter++;
-			//if (counter >= counterLimit) {
-				//nbLoose = counter = 0;	
-			//}
-		}
-		
-		//if (nbLoose >= losesLimit) {
-			//setBet(riskBet1);
-			//nbLoose = 0;
-		//} else if (getBet() != riskBet2) {
-			//setBet(initialBet);
-		//}
-		
-		totalProfit += getProfit(); // Increases current profit to total profit
-		
-		if (totalProfit < profit) {
-			setBet(initialBet * 10);
-		} else {
-			setBet(initialBet);
-			
-			if (totalProfit > profit + 20) {
-				profit += 20;	
-			}
-		}
-		
-		//console.log('Total profit: ' +  totalProfit + '\n');
-	});
 }, speed * 4);
