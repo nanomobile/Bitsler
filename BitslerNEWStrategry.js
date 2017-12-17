@@ -2,6 +2,8 @@ var initialBet = 0.00000001; // Initial bet value. Change it to what fits the be
 
 var speed = 10;
 
+var counter = 0;
+
 setBet(initialBet);
 setChance(0.01);
 
@@ -71,6 +73,12 @@ setInterval(function() {
 	if (getBalance() <= 0) return;
 	
 	if (initialBet == 0) return;
+	
+	counter++;
+	
+	console.clear();
+	
+	console.log(counter);
 	
 	setTimeout(function(){
 		roll();
