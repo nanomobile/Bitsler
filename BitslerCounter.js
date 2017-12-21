@@ -66,8 +66,8 @@ function getBalance() {
 function roll(){
   console.clear();
   
-  console.log("Counter LOW = " . counterLow);
-  console.log("Counter HIGH = " . counterHigh);
+  console.log(counterLow);
+  console.log(counterHigh);
 
 	if (getBalance() <= 0) return;
 	
