@@ -86,11 +86,15 @@ setInterval(function() {
 	if (initialBet == 0) return;
 	
   if (getRoll() >= chance) {
-    counterLow++;
+      counterLow++;
+  } else {
+      counterLow = 0;
   }
   
   if (getRoll() <= 100.0 - chance - 0.01) {
     counterHigh++;
+  } else {
+    counterHigh = 0;	  
   }
   
   if (counterLow >= counterLowMax || counterHigh >= counterHighMax) {
